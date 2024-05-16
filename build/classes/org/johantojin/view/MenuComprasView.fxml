@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="900.0" style="-fx-background-color: #1B4896;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.johantojin.controller.MenuComprasController">
+   <children>
+      <ImageView fitHeight="550.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ModuloCompras.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tblCompras" layoutX="14.0" layoutY="387.0" prefHeight="149.0" prefWidth="720.0">
+        <columns>
+          <TableColumn fx:id="colNumeroDocumento" prefWidth="209.60003662109375" text="numeroDocumento" />
+          <TableColumn fx:id="colFechaDocumento" prefWidth="140.79998779296875" text="fechaDocumento" />
+            <TableColumn fx:id="colDescripcion" prefWidth="232.00006103515625" text="descripcion" />
+            <TableColumn fx:id="colTotalDocumento" prefWidth="136.0" text="totalDocumento" />
+        </columns>
+      </TableView>
+      <GridPane layoutX="7.0" layoutY="295.0" prefHeight="66.0" prefWidth="599.0">
+         <columnConstraints>
+            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="217.39996337890625" minWidth="10.0" prefWidth="140.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="361.0" minWidth="10.0" prefWidth="180.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="341.8000061035156" minWidth="0.0" prefWidth="145.79998779296875" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="134.20001220703125" minWidth="10.0" prefWidth="96.60003662109375" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label text="numeroDocumento" />
+            <TextField fx:id="txtNumeroDocumento" prefHeight="25.0" prefWidth="132.0" GridPane.columnIndex="1" />
+            <Label prefHeight="18.0" prefWidth="185.0" text="descripcion" textAlignment="RIGHT" GridPane.columnIndex="2" />
+            <TextField fx:id="txtDescripcionCompras" prefHeight="25.0" prefWidth="183.0" GridPane.columnIndex="3" />
+            <Label text="fechaDocumento" GridPane.rowIndex="1" />
+            <TextField fx:id="txtFechaDocumento" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label prefHeight="18.0" prefWidth="207.0" text="totalDocumento" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="txtTotalDocumento" prefHeight="25.0" prefWidth="199.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+      <GridPane layoutX="711.0" layoutY="121.0" prefHeight="201.0" prefWidth="170.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#agregar" prefHeight="46.0" prefWidth="170.0" styleClass="button3" stylesheets="@../resource/ElSuperCSS.css" text="Agregar" />
+            <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminar" onMouseClicked="#seleccionarElemento" prefHeight="50.0" prefWidth="181.0" styleClass="button3" stylesheets="@../resource/ElSuperCSS.css" text="Eliminar" GridPane.rowIndex="1" />
+            <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#editar" prefHeight="46.0" prefWidth="178.0" styleClass="button3" stylesheets="@../resource/ElSuperCSS.css" text="Editar" GridPane.rowIndex="2" />
+            <Button fx:id="btnReporte" mnemonicParsing="false" prefHeight="48.0" prefWidth="177.0" styleClass="button3" stylesheets="@../resource/ElSuperCSS.css" text="Reportes" GridPane.rowIndex="3" />
+            <ImageView fx:id="imgAgregar" fitHeight="54.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Agregar.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imgEliminar" fitHeight="52.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../images/Eliminar.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imgEditar" fitHeight="61.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+               <image>
+                  <Image url="@../images/Editar.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imgReporte" fitHeight="52.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
+               <image>
+                  <Image url="@../images/Reportes.png" />
+               </image>
+            </ImageView>
+         </children>
+      </GridPane>
+      <Button fx:id="btnRegresar" layoutX="787.0" layoutY="506.0" mnemonicParsing="false" onAction="#regresar" prefHeight="17.0" prefWidth="94.0" styleClass="button3" stylesheets="@../resource/ElSuperCSS.css" text="Regresar" textAlignment="RIGHT">
+         <font>
+            <Font size="9.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
