@@ -19,10 +19,9 @@ public class Producto {
    private int existencia;
    private int codigoTipoProducto;
    private int codigoProveedor;
-   
-   public Producto(){
-   
-   }
+
+    public Producto() {
+    }
 
     public Producto(int codigoProducto, String descripcionProducto, double precioUnitario, double precioDocena, double precioMayor, String imagenProducto, int existencia, int codigoTipoProducto, int codigoProveedor) {
         this.codigoProducto = codigoProducto;
@@ -110,8 +109,4 @@ public class Producto {
    
    
    
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> ac1005f0c295eadbe9af9ee51decb8784cef9eea

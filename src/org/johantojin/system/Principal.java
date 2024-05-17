@@ -14,6 +14,7 @@ import org.johantojin.controller.MenuCargosController;
 import org.johantojin.controller.MenuClientesController;
 import org.johantojin.controller.MenuComprasController;
 import org.johantojin.controller.MenuPrincipalController;
+import org.johantojin.controller.MenuProductosController;
 import org.johantojin.controller.MenuProgramadorController;
 import org.johantojin.controller.MenuProveedoresController;
 import org.johantojin.controller.MenuTipoDeProductoController;
@@ -135,6 +136,8 @@ public class Principal extends Application {
      }
      
      
+     
+     
     // vista 6 Tipo de Producto
      public void menuTipoDeProductosView(){
             try{
@@ -144,6 +147,8 @@ public class Principal extends Application {
             e.printStackTrace();
         }   
     }
+     
+     
     
     public void menuProductosView(){
         try{
@@ -153,6 +158,9 @@ public class Principal extends Application {
             e.printStackTrace();
         }
     }
+    
+    
+    
     
     
     public static void main(String[] args) {

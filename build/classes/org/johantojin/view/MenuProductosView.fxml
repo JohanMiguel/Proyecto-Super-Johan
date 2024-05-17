@@ -14,24 +14,23 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.johantojin.controller.MenuProductosController">
    <children>
       <ImageView fitHeight="442.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/FondoProductos.png" />
          </image>
       </ImageView>
-      <TableView layoutX="14.0" layoutY="346.0" prefHeight="200.0" prefWidth="843.0">
+      <TableView fx:id="tblProductos" layoutX="14.0" layoutY="346.0" prefHeight="200.0" prefWidth="843.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="codigoDescripcion" />
-          <TableColumn prefWidth="103.99999237060547" text="descripcionProducto" />
-            <TableColumn prefWidth="100.80001831054688" text="PrecioUnitario" />
-            <TableColumn prefWidth="123.99993896484375" text="precioDocena" />
-            <TableColumn prefWidth="102.40005493164062" text="PrecioMayor" />
-            <TableColumn prefWidth="126.39996337890625" text="existencia" />
-            <TableColumn prefWidth="108.800048828125" text="codigoTipoProducto" />
-            <TableColumn prefWidth="103.99993896484375" text="codigoProveedor" />
+          <TableColumn fx:id="colDescProd" prefWidth="75.0" text="codigoDescripcion" />
+          <TableColumn fx:id="colDescProd" prefWidth="103.99999237060547" text="descripcionProducto" />
+            <TableColumn fx:id="colPrecioU" prefWidth="100.80001831054688" text="PrecioUnitario" />
+            <TableColumn fx:id="colPrecioD" prefWidth="123.99993896484375" text="precioDocena" />
+            <TableColumn fx:id="colPrecioM" prefWidth="102.40005493164062" text="PrecioMayor" />
+            <TableColumn fx:id="colExistencia" prefWidth="126.39996337890625" text="existencia" />
+            <TableColumn fx:id="colCodTipoProd" prefWidth="108.800048828125" text="codigoTipoProducto" />
+            <TableColumn fx:id="colCodProv" prefWidth="103.99993896484375" text="codigoProveedor" />
         </columns>
       </TableView>
       <GridPane layoutX="142.0" layoutY="108.0">
@@ -80,7 +79,7 @@
             <Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#agregar" prefHeight="46.0" prefWidth="170.0" styleClass="button3" stylesheets="@../resource/ElSuperCSS.css" text="Agregar" />
             <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminar" onMouseClicked="#seleccionarElemento" prefHeight="50.0" prefWidth="181.0" styleClass="button3" stylesheets="@../resource/ElSuperCSS.css" text="Eliminar" GridPane.rowIndex="1" />
             <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#editar" prefHeight="46.0" prefWidth="178.0" styleClass="button3" stylesheets="@../resource/ElSuperCSS.css" text="Editar" GridPane.rowIndex="2" />
-            <Button fx:id="btnReporte" mnemonicParsing="false" prefHeight="48.0" prefWidth="177.0" styleClass="button3" stylesheets="@../resource/ElSuperCSS.css" text="Reportes" GridPane.rowIndex="3" />
+            <Button fx:id="btnReporte" mnemonicParsing="false" onAction="#reportes" prefHeight="48.0" prefWidth="177.0" styleClass="button3" stylesheets="@../resource/ElSuperCSS.css" text="Reportes" GridPane.rowIndex="3" />
             <ImageView fx:id="imgAgregar" fitHeight="54.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/Agregar.png" />

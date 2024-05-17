@@ -1,3 +1,4 @@
+package org.johantojin.controller;
 
 import java.net.URL;
 import java.sql.PreparedStatement;
@@ -40,8 +41,12 @@ public class MenuProductosController implements Initializable{
     @FXML private TextField txtPrecioD;
     @FXML private TextField txtPrecioM;
     @FXML private TextField txtExistencia;
+    
+    
     @FXML private ComboBox cmbCodigoTipoP;
     @FXML private ComboBox cmbCodProv;
+    
+    
     @FXML private TableView tblProductos;
     @FXML private TableColumn colCodProd;
     @FXML private TableColumn colDescProd;
@@ -51,6 +56,8 @@ public class MenuProductosController implements Initializable{
     @FXML private TableColumn colExistencia;
     @FXML private TableColumn colCodTipoProd;
     @FXML private TableColumn colCodProv;
+    
+    
     @FXML private Button btnAgregar;
     @FXML private Button btnEliminar;
     @FXML private Button btnEditar;
