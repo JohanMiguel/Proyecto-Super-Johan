@@ -39,7 +39,7 @@ create table Compras (
 create table TipoProducto (
 	codigoTipoProducto int not null,
 	descripcion varchar (45) not null,
-	primary key Pk_codigoTipoProducto (codigoTipoProducto)
+	primary key PK_codigoTipoProducto (codigoTipoProducto)
 );
 
 create table CargoEmpleado (
@@ -51,25 +51,25 @@ create table CargoEmpleado (
 
 
 create table Productos (
-	codigoProducto varchar (15),
-    descripcionProducto varchar(45),
-    precioUnitario decimal(10,2),
-    precioDocena decimal(10,2),
-    precioMayor decimal(10,2),
-	imagenProducto varchar(45),
-    existencia int,
-    TipoProducto int not null,
-    Proveedores int not null,
-    
-    primary key PK_codigoProducto (codigoProducto),
-   foreign key FK_codigoTipoProducto(codigoTipoProducto) references TipoProducto (codigoTipoProducto),
-   foreign key FK_codigoProveedor(codigoProveedor) references Proveedores (codigoProveedor)
+    codigoProducto int not null auto_increment,
+    descripcionProducto varchar(100) not null,
+    precioUnitario decimal(10,2) not null,
+    precioDocena decimal(10,2) not null,
+    precioMayor decimal(10,2) not null,
+    imagenProducto varchar(25),
+    existencia int not null,
+    codigoTipoProducto int not null,
+    codigoProveedor int not null,
+    primary key  PK_codigoCargoEmpleado(codigoProducto),
+    foreign key FK_codigotipoproducto(codigoTipoProducto) references TipoProducto(codigoTipoProducto),
+    foreign key FK_codigoproveedor(codigoProveedor) references Proveedores(codigoProveedor)
 );
 
 
 
 
-*/
+
+
 -- AGREGAR CLIENTES
 
 Delimiter $$
@@ -467,8 +467,6 @@ begin
     values (codCarhoEmpleado, nomCargo, desCargo);
 end $$
 delimiter ;
-
--- Ejemplo de llamada al procedimiento para agregar un CargoEmpleado
 call sp_AgregarCargoEmpleado(1, 'Cargo A', 'Descripción del Cargo A');
 
 
@@ -482,8 +480,6 @@ begin
     from CargoEmpleado;
 end $$
 delimiter ;
-
--- Ejemplo de llamada al procedimiento para listar los CargosEmpleado
 call sp_ListarCargoEmpleado();
 
 
@@ -499,8 +495,6 @@ begin
     where codigoCargoEmpleado = codCarhoEmpleado;
 end $$
 delimiter ;
-
--- Ejemplo de llamada al procedimiento para buscar un CargoEmpleado por código
 call sp_BuscarCargoEmpleado(1);
 
 
@@ -515,8 +509,6 @@ begin
     where codigoCargoEmpleado = codCarhoEmpleado;
 end $$
 delimiter ;
-
--- Ejemplo de llamada al procedimiento para eliminar un CargoEmpleado por código
 call sp_EliminarCargoEmpleado(1);
 
 
@@ -534,8 +526,179 @@ begin
 end $$
 delimiter ;
 
--- Ejemplo de llamada al procedimiento para editar un CargoEmpleado
-call sp_editar_cargoempleado(1, 'Nuevo Cargo A', 'Nueva Descripción del Cargo A');
+call sp_EditarCargoEmpleado(2, 'Nuevo Cargo Z', 'Nueva Descripción del Cargo Z');
+
+-- ------------------------------------PROCEDIMIENTOS ALMACENADOS DE PRODUCTOS-----------------------------------------------------------------------------------
+
+
+delimiter $$
+create procedure sp_AgregarProductos (in codigoProducto int,in descripcionProducto varchar(100),in precioUnitario decimal(10,2),in precioDocena decimal(10,2),
+									in precioMayor decimal(10,2),in imagenProducto varchar(25),in existencia int,in codigoTipoProducto int,in codigoProveedor int)
+begin
+    insert into Productos (codigoProducto,descripcionProducto,precioUnitario,precioDocena,precioMayor,imagenProducto,existencia,codigoTipoProducto,codigoProveedor) 
+    values (codigoProducto,descripcionProducto,precioUnitario,precioDocena,precioMayor,imagenProducto,existencia,codigoTipoProducto,codigoProveedor);
+end$$
+delimiter ;
+
+insert into TipoProducto (codigoTipoProducto, descripcion)
+values (1, 'tipo a');
+
+
+insert into Proveedores (codigoProveedor, nitProveedor, nombreProveedor, apellidoProveedor, direccionProveedor, razonSocial, contactoPrincipal, paginaWeb)
+values (1, '1234567890', 'proveedor', 'apellido', 'direccion', 'razon social', 'contacto', 'paginaweb.com');
+
+call sp_AgregarProductos(1, 'Producto A', 10.00, 100.00, 500.00, 'imagen.jpg', 50, 1, 1);
+
+
+
+
+
+
+
+
+
+
+delimiter $$
+create procedure sp_ListarProductos()
+begin
+    select
+        codigoProducto,
+        descripcionProducto,
+        precioUnitario,
+        precioDocena,
+        precioMayor,
+        imagenProducto,
+        existencia,
+        codigoTipoProducto,
+        codigoProveedor
+    from productos;
+end$$
+delimiter ;
+call sp_ListarProductos();
+
+
+
+
+
+
+
+delimiter $$
+create procedure sp_BuscarProducto (
+    in codigoProducto int
+)
+begin
+    select
+        codigoProducto,
+        descripcionProducto,
+        precioUnitario,
+        precioDocena,
+        precioMayor,
+        imagenProducto,
+        existencia,
+        codigoTipoProducto,
+        codigoProveedor
+    from productos
+    where codigoProducto = codigoProducto;
+end$$
+delimiter ;
+
+call sp_BuscarProducto(1);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+delimiter $$
+create procedure sp_EliminarProducto (
+    in codigoProducto int
+)
+begin
+    delete from Productos
+    where codigoProducto = codigoProducto;
+end$$
+delimiter ;
+SET SQL_SAFE_UPDATES = 0;
+
+call sp_EliminarProducto(1);
+
+
+
+
+
+
+
+
+
+delimiter $$
+create procedure sp_EditarProducto (in codigoProducto int,in descripcionProducto varchar(100),in precioUnitario decimal(10,2),in precioDocena decimal(10,2),in precioMayor decimal(10,2),
+									in imagenProducto varchar(25),in existencia int,in codigoTipoProducto int,in codigoProveedor int)
+begin
+    update Productos
+    set
+        descripcionProducto = descripcionProducto,
+        precioUnitario = precioUnitario,
+        precioDocena = precioDocena,
+        precioMayor = precioMayor,
+        imagenProducto = imagenProducto,
+        existencia = existencia,
+        codigoTipoProducto = codigoTipoProducto,
+        codigoProveedor = codigoProveedor
+    where codigoProducto = codigoProducto;
+end$$
+delimiter ;
+
+call sp_EditarProducto(1, 'Producto B', 12.00, 120.00, 600.00, 'imagen_b.jpg', 60, 1, 1);
+
+
+-- este es un modo de actualizacion segura que esta aviltado 
+set SQL_SAFE_UPDATES = 1;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

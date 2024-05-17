@@ -3,17 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/fbs_c/Downloads/CarpSuper%20mayo9%201/CarpSuper%20mayo9/CarpSuper%201/CarpSuper/ElSuper/src/org/johantojin/controller/MenuClientesController.java</file>
-            <file>file:/C:/Users/fbs_c/Downloads/CarpSuper%20mayo9%201/CarpSuper%20mayo9/CarpSuper%201/CarpSuper/ElSuper/src/org/johantojin/bean/Clientes.java</file>
-            <file>file:/C:/Users/fbs_c/Downloads/CarpSuper%20mayo9%201/CarpSuper%20mayo9/CarpSuper%201/CarpSuper/ElSuper/src/org/johantojin/controller/MenuComprasController.java</file>
-            <file>file:/C:/Users/fbs_c/Downloads/CarpSuper%20mayo9%201/CarpSuper%20mayo9/CarpSuper%201/CarpSuper/ElSuper/src/org/johantojin/controller/MenuProgramadorController.java</file>
-            <file>file:/C:/Users/fbs_c/Downloads/CarpSuper%20mayo9%201/CarpSuper%20mayo9/CarpSuper%201/CarpSuper/ElSuper/src/org/johantojin/bean/Cargo.java</file>
-            <file>file:/C:/Users/fbs_c/Downloads/CarpSuper%20mayo9%201/CarpSuper%20mayo9/CarpSuper%201/CarpSuper/ElSuper/src/org/johantojin/controller/MenuPrincipalController.java</file>
-            <file>file:/C:/Users/fbs_c/Downloads/CarpSuper%20mayo9%201/CarpSuper%20mayo9/CarpSuper%201/CarpSuper/ElSuper/src/org/johantojin/controller/MenuCargosController.java</file>
-            <file>file:/C:/Users/fbs_c/Downloads/CarpSuper%20mayo9%201/CarpSuper%20mayo9/CarpSuper%201/CarpSuper/ElSuper/src/org/johantojin/controller/MenuProveedoresController.java</file>
-            <file>file:/C:/Users/fbs_c/Downloads/CarpSuper%20mayo9%201/CarpSuper%20mayo9/CarpSuper%201/CarpSuper/ElSuper/src/org/johantojin/bean/TipoDeProducto.java</file>
-            <file>file:/C:/Users/fbs_c/Downloads/CarpSuper%20mayo9%201/CarpSuper%20mayo9/CarpSuper%201/CarpSuper/ElSuper/src/org/johantojin/system/Principal.java</file>
-            <file>file:/C:/Users/fbs_c/Downloads/CarpSuper%20mayo9%201/CarpSuper%20mayo9/CarpSuper%201/CarpSuper/ElSuper/src/org/johantojin/controller/MenuTipoDeProductoController.java</file>
+            <file>file:/C:/Users/fbs_c/OneDrive/Escritorio/Repositorio_Casa/Proyecto-Super-Johan/src/org/johantojin/controller/MenuProductosController.java</file>
+            <file>file:/C:/Users/fbs_c/OneDrive/Escritorio/Repositorio_Casa/Proyecto-Super-Johan/src/org/johantojin/bean/Producto.java</file>
         </group>
     </open-files>
 </project-private>
