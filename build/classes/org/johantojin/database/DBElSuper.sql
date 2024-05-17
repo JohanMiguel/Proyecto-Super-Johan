@@ -50,7 +50,21 @@ create table CargoEmpleado (
 );
 
 
-
+create table Productos (
+	codigoProducto varchar (15),
+    descripcionProducto varchar(45),
+    precioUnitario decimal(10,2),
+    precioDocena decimal(10,2),
+    precioMayor decimal(10,2),
+	imagenProducto varchar(45),
+    existencia int,
+    TipoProducto int not null,
+    Proveedores int not null,
+    
+    primary key PK_codigoProducto (codigoProducto),
+   foreign key FK_codigoTipoProducto(codigoTipoProducto) references TipoProducto (codigoTipoProducto),
+   foreign key FK_codigoProveedor(codigoProveedor) references Proveedores (codigoProveedor)
+);
 
 
 

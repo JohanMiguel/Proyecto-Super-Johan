@@ -1,10 +1,10 @@
-package org.johantojin.controller;
 
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,189 +20,292 @@ import org.johantojin.bean.TipoDeProducto;
 import org.johantojin.db.Conexion;
 import org.johantojin.system.Principal;
 
-
+/**
+ *
+ * @author lphg3
+ */
 public class MenuProductosController implements Initializable{
-     private Principal escenarioPrincipal;
-     private enum operaciones{AGREGAR, ELIMINAR, EDITAR, ACTUALIZAR, CANCELAR, NINGUNO }
-     private operaciones tipoDeOperacion = operaciones.NINGUNO;
-     private ObservableList <Producto> listaProducto;
-     private ObservableList <Proveedores> listaProveedor;
-     private ObservableList <TipoDeProducto> listaP;
-     
-     
-     // setiar los objetos
-     // iniciales de combox cmb y su funcion
-     @FXML private TextField txtCodigoProd;
-     @FXML private TextField txtDescPro;
-     @FXML private TextField txtPrecioU;
-     @FXML private TextField txtPrecioD;
-     @FXML private TextField txtPrecioM;
-     @FXML private TextField txtExistencia;
-     
-     @FXML private ComboBox cmbCodigoTopoP;
-     @FXML private ComboBox cmbCodProv;
-     
-     @FXML private TableView tblProductos;
-     @FXML private TableColumn colCodProd;
-     @FXML private TableColumn colDescProd;
-     @FXML private TableColumn colPrecioU;
-     @FXML private TableColumn colPrecioD;
-     @FXML private TableColumn colPrecioM;
-     @FXML private TableColumn colExistencia;
-     @FXML private TableColumn colCodTipoProd;
-     @FXML private TableColumn colCodProv;
-     
-      // botones de acciones
+
+    
+    private Principal escenarioPrincipal;
+    private enum operaciones{AGREGAR, ELIMINAR, EDITAR, ACTUALIZAR, CANCELAR, NINGUNO}
+    private operaciones tipoDeOperacion = operaciones.NINGUNO;
+    private ObservableList <Producto> listaProductos;
+    private ObservableList <Proveedores> listaProveedores;
+    private ObservableList <TipoDeProducto> listaTipoDeProducto;
+    
+    @FXML private TextField txtCodigoProd;
+    @FXML private TextField txtDescPro;
+    @FXML private TextField txtPrecioU;
+    @FXML private TextField txtPrecioD;
+    @FXML private TextField txtPrecioM;
+    @FXML private TextField txtExistencia;
+    @FXML private ComboBox cmbCodigoTipoP;
+    @FXML private ComboBox cmbCodProv;
+    @FXML private TableView tblProductos;
+    @FXML private TableColumn colCodProd;
+    @FXML private TableColumn colDescProd;
+    @FXML private TableColumn colPrecioU;
+    @FXML private TableColumn colPrecioD;
+    @FXML private TableColumn colPrecioM;
+    @FXML private TableColumn colExistencia;
+    @FXML private TableColumn colCodTipoProd;
+    @FXML private TableColumn colCodProv;
     @FXML private Button btnAgregar;
     @FXML private Button btnEliminar;
     @FXML private Button btnEditar;
     @FXML private Button btnReporte;
-     
-     
-     
-     
-     
-     
-      public void initialize(URL location, ResourceBundle resources) {
-        cargarDatos();
-        cmbCodigoTopoP.setItems(getTipop());
+    
+    
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        cargaDatos();
+        cmbCodigoTipoP.setItems(getTipoP());
         cmbCodProv.setItems(getProveedores());
     }
-      
-      
-      // 
-      
-      
-      
-      
-      
-      
-      
-      
-      // ------------cargarDatos-----------
-      public void cargarDatos(){
-      tblProductos.setItems(getProducto());
-        colCodProd.setCellValueFactory(new PropertyValueFactory<Producto, String>("codigoProducto"));
-        colDescProd.setCellValueFactory(new PropertyValueFactory<Producto, String>("descripcionProducto"));
-        colPrecioU.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioUnitario"));
-        colPrecioD.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioDocena"));
-        colPrecioM.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioMayor"));
-        colExistencia.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("existencia"));
-        colCodTipoProd.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("codigoTipoProducto"));
-        colCodProv.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("codigoProveedor"));
-      
-      }
-      
 
-       public void seleccionarElemento(){
-        txtCodigoProd.setText(((TipoDeProducto)tblTipoDeProducto.getSelectionModel().getSelectedItem()).getCodigoTipoProducto()));
-        txtDescPro.setText(((TipoDeProducto)tblTipoDeProducto.getSelectionModel().getSelectedItem()).getDescripcion());
-    }
-      
-      // es una funcion ya que retorna, los metodos no retornas, las funciones no usan la palabra reservada void 
-       
-      public TipoDeProducto buscarTipoP (int codigoTipoProduscto){
-      
-      
-      } 
-       
-       
-       
-       
-       
-       
-       
-       
-      
-      public ObservableList<Producto> getProducto(){
-      ArrayList<Producto> lista = new ArrayList<Producto>();
-      try{
-      PreparedStatement procedimiento = Conexion.getIntance().getConexion().prepareCall("{call}")
-      ResultSet resultado = procedimiento.executeQuery();
-      while(resultado.next()){
-      lista.add(new Producto (resultado.getString()))
-      
-      }
-      }catch(Exceptio e){
-      
-      }
-      }
 
-      
-         public void agregar(){
-        switch(tipoDeOperacion){
-            case NINGUNO:
-                activarControles();
-                btnAgregar.setText("Guardar");
-                btnEliminar.setText("Cancelar");
-                btnEditar.setDisable(true);
-                btnReporte.setDisable(true);
-                
-               tipoDeOperacion = operaciones.ACTUALIZAR;
-                break;
-            case ACTUALIZAR:
-                desactivarControles();
-                limpiarControles();
-                btnAgregar.setText("Agregar");
-                btnEliminar.setText("Eliminar");
-                btnEditar.setDisable(false);
-                btnReporte.setDisable(false);
-                
-                tipoDeOperacion = operaciones.NINGUNO;
-                cargarDatos();
-                break;                
-        }
-        
-   
+    
+    public void cargaDatos(){
+    tblProductos.setItems(getProducto());
+    colCodProd.setCellValueFactory(new PropertyValueFactory<Producto, String>("codigoProducto"));
+    colDescProd.setCellValueFactory(new PropertyValueFactory<Producto, String>("descripcionProducto"));
+    colPrecioU.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioUnitario"));
+    colPrecioD.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioDocena"));
+    colPrecioM.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioMayor"));
+    colExistencia.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("existencia"));
+    colCodTipoProd.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("codigoTipoProducto"));
+    colCodProv.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("codigoProveedor"));
+    
+    
     }
-      
-         
-           public void guardar(){
-        Producto registro = new Producto();
-        registro.setCodigoProducto(txtCodigoProd.getText());
-        registro.setCodigoProveedor((TipoDeProducto)cmbCodProv.getSelectionModel().getSelectedItem());
+    public void selecionarElementos(){
+       txtCodigoProd.setText(String.valueOf(((Producto)tblProductos.getSelectionModel().getSelectedItem()).getCodigoProducto()));
+       txtDescPro.setText(((Producto)tblProductos.getSelectionModel().getSelectedItem()).getDescripcionProducto());
+       txtPrecioU.setText(String.valueOf(((Producto)tblProductos.getSelectionModel().getSelectedItem()).getPrecioUnitario()));
+       txtPrecioD.setText(String.valueOf(((Producto)tblProductos.getSelectionModel().getSelectedItem()).getPrecioDocena()));
+       txtPrecioM.setText(String.valueOf(((Producto)tblProductos.getSelectionModel().getSelectedItem()).getPrecioMayor()));
+       txtExistencia.setText(String.valueOf(((Producto)tblProductos.getSelectionModel().getSelectedItem()).getExistencia()));
+       cmbCodigoTipoP.getSelectionModel().select(buscarTipoProducto(((Producto)tblProductos.getSelectionModel().getSelectedItem()).getCodigoTipoProducto()));
+    }
+    
+    public TipoDeProducto buscarTipoProducto (int codigoTipoProducto ){
+        TipoDeProducto resultado = null;
         try{
-            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_AgregarTipoProducto(?, ?)}");
-            procedimiento.setInt(1, registro.getCodigoTipoProducto());
-            procedimiento.setString(2, registro.getDescripcion());
-            procedimiento.execute();
-            listaTipoDeProducto.add(registro);
-        }catch (Exception e){
+         PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_buscarTipoProducto(?)}");
+         procedimiento.setInt(1, codigoTipoProducto);
+         ResultSet registro = procedimiento.executeQuery();
+         while (registro.next()){
+             resultado = new TipoDeProducto(registro.getInt("codigoTipoProducto"),
+                                            registro.getString("descripcionProducto")
+             
+             );
+         }
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }    
+    
+        return resultado;
+    }
+    
+    
+    public ObservableList<Producto> getProducto(){
+    ArrayList<Producto> lista = new ArrayList<Producto>();
+    try{
+        PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_ListarProductos()}");
+        ResultSet resultado = procedimiento.executeQuery();
+        while(resultado.next()){
+            lista.add(new Producto (
+                    resultado.getInt("codigoProducto"),
+                    resultado.getString("descripcionProducto"),
+                                    resultado.getDouble("precioUnitario"),
+                                    resultado.getDouble("precioDocena"),
+                                    resultado.getDouble("precioMayor"),
+                                    resultado.getString("imagenProducto"),
+                                    resultado.getInt("existencia"),
+                                    resultado.getInt("codigoTipoProducto"),
+                                    resultado.getInt("codigoProveedor")            
+            ));
+        }
+    }catch (Exception e){
+        e.printStackTrace();
+    }
+    
+    
+    return listaProductos = FXCollections.observableArrayList(lista);
+        
+    }
+    
+    
+     
+    
+    
+    
+    
+    
+    
+    
+ public ObservableList<Proveedores> getProveedores (){
+        // Variable lista                       
+        ArrayList<Proveedores> lista = new ArrayList<>();
+        // amnejo de excepcion
+        // variable que almace la linea de conexion
+        try{                             
+            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_ListarProveedores()}");
+            ResultSet resultado = procedimiento.executeQuery();
+            // funciona por medio del resultado y que avanze de fila en fila
+            // la lista de tipo Arraylist donde recivimos nuestros dato
+            while(resultado.next()){
+                lista.add(new Proveedores (resultado.getInt("codigoProveedores"),
+                                        resultado.getString("NITProveedor"),
+                                        resultado.getString("nombreProveedor"),
+                                        resultado.getString("apellidoProveedor"),
+                                        resultado.getString("direccionProveedor"),
+                                        resultado.getString("razonSocial"),
+                                        resultado.getString("contactoPrincipal"),
+                                        resultado.getString("paginaWeb")
+                ));
+            }
+        }catch(Exception e){
             e.printStackTrace();
         }
+    return listaProveedores = FXCollections.observableArrayList(lista);
+    }
+    
+    
+    
+    
+     public ObservableList<TipoDeProducto> getTipoP() {
+        ArrayList<TipoDeProducto> lista = new ArrayList<>();
+        try {
+            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_mostrarTipoProducto()}");
+            ResultSet resultado = procedimiento.executeQuery();
+            while (resultado.next()) {
+                lista.add(new TipoDeProducto(resultado.getInt("CodigoTipoProducto"),
+                        resultado.getString("descripcionProducto")
+                ));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listaTipoDeProducto = FXCollections.observableList(lista);
+    }
+     
+     
+     
+     
+    
+     public void agregar (){
+         switch(tipoDeOperacion){
+             case NINGUNO:
+              activarControles();
+             btnAgregar.setText("Guardar");
+             btnEliminar.setText("Cancelar");
+             btnEditar.setDisable(true);
+             btnReporte.setDisable(true);   
+             tipoDeOperacion = operaciones.ACTUALIZAR;
+             break;
+             case ACTUALIZAR:
+             guardar ();
+             desactivarControles();
+             limpiarControles ();
+             btnAgregar.setText("Agregar");
+             btnEliminar.setText("Eliminar");
+             btnEditar.setDisable(false);
+             btnReporte.setDisable(false);
+             tipoDeOperacion = operaciones.NINGUNO;
+             cargaDatos();
+             break;
+         }
+     
+     
+     
+     
+     }
+     
+     
+     
+     
+     public void guardar (){
+         Producto registro = new Producto();
+         registro.setCodigoProducto(Integer.parseInt(txtCodigoProd.getText()));
+         registro.setCodigoProveedor(((Proveedores)cmbCodProv.getSelectionModel().getSelectedItem()
+                 ).getCodigoProveedor());
+         registro.setCodigoTipoProducto(((TipoDeProducto)cmbCodigoTipoP.getSelectionModel().getSelectedItem())
+                 .getCodigoTipoProducto());
+         registro.setDescripcionProducto(txtDescPro.getText());
+         registro.setPrecioDocena(Double.parseDouble(txtPrecioD.getText()));
+         registro.setPrecioUnitario(Double.parseDouble(txtPrecioU.getText()));
+         registro.setPrecioMayor(Double.parseDouble(txtPrecioM.getText()));
+         registro.setExistencia(Integer.parseInt(txtExistencia.getText()));
+         try {
+        PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall
+        ("{CALL sp_agregarProducto(?, ?, ?, ?, ?, ?, ?, ?)}");
+        procedimiento.setInt(1, registro.getCodigoProducto());
+        procedimiento.setString(2, registro.getDescripcionProducto());
+        procedimiento.setDouble(3, registro.getPrecioUnitario());
+        procedimiento.setDouble(4, registro.getPrecioDocena());
+        procedimiento.setDouble(5, registro.getPrecioMayor());
+        procedimiento.setInt(6, registro.getExistencia());
+        procedimiento.setInt(7, registro.getCodigoProveedor());
+        procedimiento.setInt(8, registro.getCodigoTipoProducto());
+        procedimiento.execute();
         
-    }   
-      
-      // los comboxBox son disable por que no se pueden editar
+        listaProductos.add(registro);
+
+         }catch (Exception e){
+             e.printStackTrace();
+         }
+     
+     }
+     
+     
+     
+     
+     
+    
+    public void desactivarControles(){
+        txtCodigoProd.setEditable(false);
+        txtDescPro.setEditable(false);
+        txtPrecioU.setEditable(false);
+        txtPrecioD.setEditable(false);
+        txtPrecioM.setEditable(false);
+        txtExistencia.setEditable(false);
+        cmbCodigoTipoP.setDisable(true);
+        cmbCodigoTipoP.setDisable(true);
+    
+    }
       public void activarControles(){
-      txtCodigoProd.setEditable(true);
-      txtDescPro.setEditable(true);
-      txtPrecioU.setEditable(true);
-      txtPrecioD.setEditable(true);
-      txtPrecioM.setEditable(true);
-      txtExistencia.setEditable(true);
-      
-      }
-      
-       public void desactivarControles(){
-      txtCodigoProd.setEditable(false);
-      txtDescPro.setEditable(false);
-      txtPrecioU.setEditable(false);
-      txtPrecioD.setEditable(false);
-      txtPrecioM.setEditable(false);
-      txtExistencia.setEditable(false);
-      
-      }
-      
+        txtCodigoProd.setEditable(true);
+        txtDescPro.setEditable(true);
+        txtPrecioU.setEditable(true);
+        txtPrecioD.setEditable(true);
+        txtPrecioM.setEditable(true);
+        txtExistencia.setEditable(true);
+        cmbCodigoTipoP.setDisable(false);
+        cmbCodigoTipoP.setDisable(false);
+    
+    }
       public void limpiarControles(){
-      txtCodigoProd.clear();
-      txtDescPro.clear();
-      txtPrecioU.clear();
-      txtPrecioD.clear();
-      txtPrecioM.clear();
-      txtExistencia.clear();
-      }
-      
-      
-      
+        txtCodigoProd.clear();
+        txtDescPro.clear();
+        txtPrecioU.clear();
+        txtPrecioD.clear();
+        txtPrecioM.clear();
+        txtExistencia.clear();
+        tblProductos.getSelectionModel().getSelectedItem();
+        cmbCodigoTipoP.getSelectionModel().getSelectedItem();
+        cmbCodigoTipoP.getSelectionModel().getSelectedItem();
+    
+    }
+          public Principal getEscenarioPrincipal() {
+        return escenarioPrincipal;
+    }
+
+    public void setEscenarioPrincipal(Principal escenarioPrincipal) {
+        this.escenarioPrincipal = escenarioPrincipal;
+    }
+    
 }

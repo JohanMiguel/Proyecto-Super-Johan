@@ -145,7 +145,14 @@ public class Principal extends Application {
         }   
     }
     
-    
+    public void menuProductosView(){
+        try{
+            MenuProductosController menuProductosView =(MenuProductosController) cambiarEscena("MenuProductosView.fxml",900,560);
+            menuProductosView.setEscenarioPrincipal(this);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
     
     
     public static void main(String[] args) {
