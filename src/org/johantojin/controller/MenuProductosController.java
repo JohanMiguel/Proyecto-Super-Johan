@@ -83,9 +83,10 @@ public class MenuProductosController implements Initializable{
     colExistencia.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("existencia"));
     colCodTipoProd.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("codigoTipoProducto"));
     colCodProv.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("codigoProveedor"));
-    
-    
     }
+    
+    
+    
     public void selecionarElementos(){
        txtCodigoProd.setText(String.valueOf(((Producto)tblProductos.getSelectionModel().getSelectedItem()).getCodigoProducto()));
        txtDescPro.setText(((Producto)tblProductos.getSelectionModel().getSelectedItem()).getDescripcionProducto());
@@ -95,6 +96,8 @@ public class MenuProductosController implements Initializable{
        txtExistencia.setText(String.valueOf(((Producto)tblProductos.getSelectionModel().getSelectedItem()).getExistencia()));
        cmbCodigoTipoP.getSelectionModel().select(buscarTipoProducto(((Producto)tblProductos.getSelectionModel().getSelectedItem()).getCodigoTipoProducto()));
     }
+    
+    
     
     public TipoDeProducto buscarTipoProducto (int codigoTipoProducto ){
         TipoDeProducto resultado = null;
@@ -115,6 +118,7 @@ public class MenuProductosController implements Initializable{
     
         return resultado;
     }
+    
     
     
     public ObservableList<Producto> getProducto(){
@@ -145,19 +149,11 @@ public class MenuProductosController implements Initializable{
     }
     
     
-     
-    
-    
-    
-    
-    
-    
     
  public ObservableList<Proveedores> getProveedores (){
         // Variable lista                       
         ArrayList<Proveedores> lista = new ArrayList<>();
-        // amnejo de excepcion
-        // variable que almace la linea de conexion
+   
         try{                             
             PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_ListarProveedores()}");
             ResultSet resultado = procedimiento.executeQuery();
@@ -179,10 +175,9 @@ public class MenuProductosController implements Initializable{
         }
     return listaProveedores = FXCollections.observableArrayList(lista);
     }
-    
-    
-    
-    
+
+
+ 
      public ObservableList<TipoDeProducto> getTipoP() {
         ArrayList<TipoDeProducto> lista = new ArrayList<>();
         try {
@@ -200,9 +195,7 @@ public class MenuProductosController implements Initializable{
         return listaTipoDeProducto = FXCollections.observableList(lista);
     }
      
-     
-     
-     
+
     
      public void agregar (){
          switch(tipoDeOperacion){
@@ -226,12 +219,7 @@ public class MenuProductosController implements Initializable{
              cargaDatos();
              break;
          }
-     
-     
-     
-     
      }
-     
      
      
      
@@ -270,9 +258,6 @@ public class MenuProductosController implements Initializable{
      
      
      
-     
-     
-    
     public void desactivarControles(){
         txtCodigoProd.setEditable(false);
         txtDescPro.setEditable(false);
@@ -284,6 +269,9 @@ public class MenuProductosController implements Initializable{
         cmbCodigoTipoP.setDisable(true);
     
     }
+    
+    
+    
       public void activarControles(){
         txtCodigoProd.setEditable(true);
         txtDescPro.setEditable(true);
@@ -295,6 +283,9 @@ public class MenuProductosController implements Initializable{
         cmbCodigoTipoP.setDisable(false);
     
     }
+      
+      
+      
       public void limpiarControles(){
         txtCodigoProd.clear();
         txtDescPro.clear();
@@ -307,7 +298,12 @@ public class MenuProductosController implements Initializable{
         cmbCodigoTipoP.getSelectionModel().getSelectedItem();
     
     }
-          public Principal getEscenarioPrincipal() {
+      
+      
+      
+      
+      
+    public Principal getEscenarioPrincipal() {
         return escenarioPrincipal;
     }
 
