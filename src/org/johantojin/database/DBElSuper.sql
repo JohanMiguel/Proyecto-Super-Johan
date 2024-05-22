@@ -49,7 +49,7 @@ create table CargoEmpleado (
 	primary key PK_codigoCargoEmpleado (codigoCargoEmpleado)
 );
 
-
+-- DUPLA CON FK
 create table Productos (
     codigoProducto int not null auto_increment,
     descripcionProducto varchar(100) not null,
@@ -90,9 +90,6 @@ call sp_AgregarClientes(2, '48956217', 'usuario2', 'usuario2', 'usuario2', '9878
  
  
 
-
-
--- -------------------------------------------------------------------------------------------------------------
 -- LISTAR CLIENTES
 Delimiter $$
 	create procedure sp_ListarClientes()
@@ -175,6 +172,13 @@ call sp_EditarClientes(2, '59482615', 'usuario3', 'usuario3', 'usuario3 ', '8462
 call sp_ListarClientes;
 
 
+
+
+
+
+
+
+-- ----------------------------------------------------------------------------------------------------------------------------------------
 
 -- AGREGAR PROVEEDORES
 Delimiter $$
@@ -284,6 +288,17 @@ call sp_EditarProveedores (2,'48592618','proveedor4','proveedor4','proveedor4', 
 call sp_ListarProveedores(); 
   
   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
    -- ----------------------- COMPRAS -------------------------------------------------------------------------------------
  Delimiter $$
 	create procedure sp_AgregarCompras (in numeroDocumento int , fechaDocumento varchar(50), in descripcion varchar (60), in totalDocumento decimal (10,2)) 
@@ -369,7 +384,7 @@ call sp_ListarCompras;
 
 
 
--- CRUD para TipoProducto
+-- ----------------------------------------------------------------------------------------------------------------------
 
 -- Agregar TipoProducto
 delimiter $$
@@ -457,7 +472,7 @@ call sp_ListarTipoProducto();
 
 
 
--- CRUD para CargoEmpleado
+-- ---------------------------------------------------------------------------------------------------------------------
 
 -- Agregar CargoEmpleado
 delimiter $$
@@ -528,9 +543,20 @@ delimiter ;
 
 call sp_EditarCargoEmpleado(2, 'Nuevo Cargo Z', 'Nueva Descripción del Cargo Z');
 
+
+
+
+
+
+
+
+
+
+
+
 -- ------------------------------------PROCEDIMIENTOS ALMACENADOS DE PRODUCTOS-----------------------------------------------------------------------------------
 
-
+-- Agregar Productos
 delimiter $$
 create procedure sp_AgregarProductos (in codigoProducto int,in descripcionProducto varchar(100),in precioUnitario decimal(10,2),in precioDocena decimal(10,2),
 									in precioMayor decimal(10,2),in imagenProducto varchar(25),in existencia int,in codigoTipoProducto int,in codigoProveedor int)
@@ -554,7 +580,7 @@ values (1, '1234567890', 'proveedor', 'apellido', 'direccion', 'razon social', '
 
 
 
-
+-- LISTAR PRODUCTOS
 
 delimiter $$
 create procedure sp_ListarProductos()
@@ -579,7 +605,7 @@ call sp_ListarProductos();
 
 
 
-
+-- BUSCAR PRODUCTOS
 delimiter $$
 create procedure sp_BuscarProducto (
     in codigoProducto int
@@ -606,17 +632,7 @@ call sp_BuscarProducto(1);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+-- ELIMINAR PRODUCTO
 
 delimiter $$
 create procedure sp_EliminarProducto (
@@ -638,7 +654,7 @@ call sp_EliminarProducto(1);
 
 
 
-
+-- EDITAR PRODUCTOS
 delimiter $$
 create procedure sp_EditarProducto (in codigoProducto int,in descripcionProducto varchar(100),in precioUnitario decimal(10,2),in precioDocena decimal(10,2),in precioMayor decimal(10,2),
 									in imagenProducto varchar(25),in existencia int,in codigoTipoProducto int,in codigoProveedor int)
