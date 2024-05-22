@@ -49,24 +49,60 @@ create table CargoEmpleado (
 	primary key PK_codigoCargoEmpleado (codigoCargoEmpleado)
 );
 
--- DUPLA CON FK
+-- DUPLAS CON FK
 create table Productos (
-    codigoProducto int not null auto_increment,
+    codigoProducto int not null ,
     descripcionProducto varchar(100) not null,
     precioUnitario decimal(10,2) not null,
     precioDocena decimal(10,2) not null,
     precioMayor decimal(10,2) not null,
     imagenProducto varchar(25),
     existencia int not null,
+    
     codigoTipoProducto int not null,
     codigoProveedor int not null,
+    
     primary key  PK_codigoCargoEmpleado(codigoProducto),
     foreign key FK_codigotipoproducto(codigoTipoProducto) references TipoProducto(codigoTipoProducto),
     foreign key FK_codigoproveedor(codigoProveedor) references Proveedores(codigoProveedor)
 );
 
 
+create table DealleCompra (
+	codigoDetalleCompra int  not null,
+    costoUnitario decimal (10.2),
+    cantidad int not null,
+    
+    codigoProducto int not null,
+	numeroDocumento int not null,
+    
+    primary key PK_codigoDetalleCompra(codigoDetalleCompra),
+    foreign key FK_codigoProducto(codigoProducto) references Productos(codigoProducto),
+    foreign key FK_numeroDocumento(numeroDocumento) references Compras(numeroDocumento)
+);
 
+
+
+create table DetalleFactura (
+	codigoDetalleFactura int not null,
+    precioUnitario decimal(10,2),
+    cantidad int not null,
+    
+    numeroFactura int not null,
+    codigoProducto int not null,
+    
+    primary key PK_codigoDetalleFactura(codigoDetalleFactura),
+    foreign key FK_numeroFactura(numeroFactura) references Factura(numeroFactura),
+    foreign key FK_codigoProducto(codigoProducto) references Productos(codigoProducto)
+);
+
+
+
+
+
+
+-- ----------------------------------------------------------------------------------------------------------
+-- --------------------------------------------------------------------------------------------------------
 
 
 
@@ -682,7 +718,7 @@ set SQL_SAFE_UPDATES = 1;
 
 
 
-
+-- -------------------------------------------------------------------------------------------------------------------
 
 
 
