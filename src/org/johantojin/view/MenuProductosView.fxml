@@ -21,7 +21,7 @@
             <Image url="@../images/FondoProductos.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tblProductos" layoutX="14.0" layoutY="346.0" prefHeight="200.0" prefWidth="843.0">
+      <TableView fx:id="tblProductos" layoutX="14.0" layoutY="346.0" onMouseClicked="#seleccionarElemento" prefHeight="200.0" prefWidth="843.0">
         <columns>
           <TableColumn fx:id="colDescProd" prefWidth="75.0" text="codigoDescripcion" />
           <TableColumn fx:id="colDescProd" prefWidth="103.99999237060547" text="descripcionProducto" />
@@ -80,26 +80,6 @@
             <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminar" onMouseClicked="#seleccionarElemento" prefHeight="50.0" prefWidth="181.0" styleClass="button3" stylesheets="@../resource/ElSuperCSS.css" text="Eliminar" GridPane.rowIndex="1" />
             <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#editar" prefHeight="46.0" prefWidth="178.0" styleClass="button3" stylesheets="@../resource/ElSuperCSS.css" text="Editar" GridPane.rowIndex="2" />
             <Button fx:id="btnReporte" mnemonicParsing="false" onAction="#reportes" prefHeight="48.0" prefWidth="177.0" styleClass="button3" stylesheets="@../resource/ElSuperCSS.css" text="Reportes" GridPane.rowIndex="3" />
-            <ImageView fx:id="imgAgregar" fitHeight="54.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/Agregar.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="imgEliminar" fitHeight="52.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
-               <image>
-                  <Image url="@../images/Eliminar.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="imgEditar" fitHeight="61.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
-               <image>
-                  <Image url="@../images/Editar.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="imgReporte" fitHeight="52.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
-               <image>
-                  <Image url="@../images/Reportes.png" />
-               </image>
-            </ImageView>
          </children>
       </GridPane>
       <Button fx:id="btnRegresar" layoutX="765.0" layoutY="316.0" mnemonicParsing="false" onAction="#regresar" prefHeight="17.0" prefWidth="94.0" styleClass="button3" stylesheets="@../resource/ElSuperCSS.css" text="Regresar" textAlignment="RIGHT">

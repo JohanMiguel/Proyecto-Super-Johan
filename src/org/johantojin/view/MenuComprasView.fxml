@@ -20,7 +20,7 @@
             <Image url="@../images/ModuloCompras.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tblCompras" layoutX="14.0" layoutY="387.0" prefHeight="149.0" prefWidth="720.0">
+      <TableView fx:id="tblCompras" layoutX="14.0" layoutY="387.0" onMouseClicked="#seleccionarElemento" prefHeight="149.0" prefWidth="720.0">
         <columns>
           <TableColumn fx:id="colNumeroDocumento" prefWidth="209.60003662109375" text="numeroDocumento" />
           <TableColumn fx:id="colFechaDocumento" prefWidth="140.79998779296875" text="fechaDocumento" />
