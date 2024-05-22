@@ -39,7 +39,13 @@ public class MenuPrincipalController implements Initializable {
     @FXML MenuItem btnMenuProveedores;
     @FXML MenuItem btnMenuCargos;
     @FXML MenuItem btnMenuTipoDeProducto;
+    
+    //BTN con FK
     @FXML MenuItem btnMenuProducto;
+    @FXML MenuItem btnDetalleCompra;
+    @FXML MenuItem btnDetalleFactura;
+    @FXML MenuItem btnEmpleado;
+    @FXML MenuItem btnFactura;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -108,6 +114,7 @@ public class MenuPrincipalController implements Initializable {
         }
     }
     
+    // vistas con FK
     
      @FXML
     public void clicProducto (ActionEvent event){
@@ -115,4 +122,35 @@ public class MenuPrincipalController implements Initializable {
             escenarioPrincipal.menuProductosView();
         }
     }
+    
+     @FXML
+    public void clicDetalleCompra (ActionEvent event){
+        if (event.getSource() == btnDetalleCompra){
+            escenarioPrincipal.menuDetalleCompraView();
+        }
+    }
+    
+     @FXML
+    public void clicDetalleFactura (ActionEvent event){
+        if (event.getSource() == btnDetalleFactura){
+            escenarioPrincipal.menuDetalleFacturaView();
+        }
+    }
+    
+    @FXML
+    public void clicFactura (ActionEvent event){
+        if (event.getSource() == btnFactura){
+            escenarioPrincipal.menuFacturaView();
+        }
+    }
+    
+    
+    
+    @FXML
+    public void clicEmpleado (ActionEvent event){
+        if (event.getSource() == btnEmpleado){
+            escenarioPrincipal.menuEmpleadoView();
+        }
+    }
+    
 }
