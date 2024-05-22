@@ -41,7 +41,7 @@ public class MenuPrincipalController implements Initializable {
     @FXML MenuItem btnMenuTipoDeProducto;
     
     //BTN con FK
-    @FXML MenuItem btnMenuProducto;
+    @FXML MenuItem btnMenuPRD;
     @FXML MenuItem btnDetalleCompra;
     @FXML MenuItem btnDetalleFactura;
     @FXML MenuItem btnEmpleado;
@@ -117,9 +117,9 @@ public class MenuPrincipalController implements Initializable {
     // vistas con FK
     
      @FXML
-    public void clicProducto (ActionEvent event){
-    if (event.getSource() == btnMenuProducto){
-            escenarioPrincipal.menuProductosView();
+    public void clicPRD (ActionEvent event){
+    if (event.getSource() == btnMenuPRD){
+            escenarioPrincipal.menuPRDView();
         }
     }
     
