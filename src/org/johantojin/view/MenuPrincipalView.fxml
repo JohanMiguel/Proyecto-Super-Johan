@@ -41,7 +41,7 @@
           </Menu>
             <Menu mnemonicParsing="false" text="Views Conectadas">
                <items>
-                  <MenuItem fx:id="btnMenuProducto" mnemonicParsing="false" onAction="#clicProducto" text="Productos" />
+                  <MenuItem fx:id="btnMenuPRD" mnemonicParsing="false" onAction="#clicPRD" text="Productos" />
                   <MenuItem fx:id="btnDetalleCompra" mnemonicParsing="false" onAction="#clicDetalleCompra" text="DetalleCompra" />
                   <MenuItem fx:id="btnDetalleFactura" mnemonicParsing="false" onAction="#clicDetalleFactura" text="DetalleFactura" />
                   <MenuItem fx:id="btnFactura" mnemonicParsing="false" onAction="#clicFactura" text="Factura" />
