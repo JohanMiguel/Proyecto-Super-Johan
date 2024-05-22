@@ -539,6 +539,8 @@ begin
     values (codigoProducto,descripcionProducto,precioUnitario,precioDocena,precioMayor,imagenProducto,existencia,codigoTipoProducto,codigoProveedor);
 end$$
 delimiter ;
+call sp_AgregarProductos(1, 'Producto A', 10.00, 100.00, 500.00, 'imagen.jpg', 50, 1, 1);
+
 
 insert into TipoProducto (codigoTipoProducto, descripcion)
 values (1, 'tipo a');
@@ -546,10 +548,6 @@ values (1, 'tipo a');
 
 insert into Proveedores (codigoProveedor, nitProveedor, nombreProveedor, apellidoProveedor, direccionProveedor, razonSocial, contactoPrincipal, paginaWeb)
 values (1, '1234567890', 'proveedor', 'apellido', 'direccion', 'razon social', 'contacto', 'paginaweb.com');
-
-call sp_AgregarProductos(1, 'Producto A', 10.00, 100.00, 500.00, 'imagen.jpg', 50, 1, 1);
-
-
 
 
 
