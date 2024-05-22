@@ -15,11 +15,10 @@
             <Image url="@../images/FondoPrincipal.png" />
          </image>
       </ImageView>
-      <MenuBar layoutX="7.0" layoutY="14.0" prefHeight="24.0" prefWidth="301.0" style="-fx-background-color: # 0D8ECB;" stylesheets="@../resource/ElSuperCSS.css">
+      <MenuBar layoutX="7.0" layoutY="14.0" prefHeight="25.0" prefWidth="373.0" style="-fx-background-color: # 0D8ECB;" stylesheets="@../resource/ElSuperCSS.css">
         <menus>
-          <Menu mnemonicParsing="false" text="Modulo">
+          <Menu mnemonicParsing="false" text="General">
             <items>
-                  <MenuItem fx:id="btnMenuProducto" mnemonicParsing="false" onAction="#clicProducto" text="Productos" />
                   <MenuItem fx:id="btnMenuClientes" mnemonicParsing="false" onAction="#clicClientes" text="Clientes" />
                   <MenuItem fx:id="btnMenuProveedores" mnemonicParsing="false" onAction="#clicProveedores" text="Provedores" />
                   <MenuItem fx:id="btnMenuCompras" mnemonicParsing="false" onAction="#clicCompras" text="Compras" />
@@ -40,6 +39,15 @@
                   <MenuItem fx:id="btnMenuProgramador" mnemonicParsing="false" onAction="#clicProgramador" text="Programador" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Views Conectadas">
+               <items>
+                  <MenuItem fx:id="btnMenuProducto" mnemonicParsing="false" onAction="#clicProducto" text="Productos" />
+                  <MenuItem fx:id="btnDetalleCompra" mnemonicParsing="false" onAction="#clicDetalleCompra" text="DetalleCompra" />
+                  <MenuItem fx:id="btnDetalleFactura" mnemonicParsing="false" onAction="#clicDetalleFactura" text="DetalleFactura" />
+                  <MenuItem fx:id="btnFactura" mnemonicParsing="false" onAction="#clicFactura" text="Factura" />
+                  <MenuItem fx:id="btnEmpleado" mnemonicParsing="false" onAction="#clicEmpleado" text="Empleado" />
+               </items>
+            </Menu>
         </menus>
          <styleClass>
             <String fx:value="button1" />
