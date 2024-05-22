@@ -46,7 +46,8 @@ public class MenuPrincipalController implements Initializable {
     @FXML MenuItem btnDetalleFactura;
     @FXML MenuItem btnEmpleado;
     @FXML MenuItem btnFactura;
-    
+    @FXML MenuItem btnTelefono;
+    @FXML MenuItem btnGmail;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
@@ -152,5 +153,22 @@ public class MenuPrincipalController implements Initializable {
             escenarioPrincipal.menuEmpleadoView();
         }
     }
+    
+    
+    @FXML
+    public void clicTelefono (ActionEvent event){
+        if (event.getSource() == btnTelefono){
+            escenarioPrincipal.menuDetalleCompraView();
+        }
+    }
+    
+    
+    @FXML
+    public void clicGmail (ActionEvent event){
+        if (event.getSource() == btnGmail){
+            escenarioPrincipal.menuDetalleCompraView();
+        }
+    }
+    
     
 }

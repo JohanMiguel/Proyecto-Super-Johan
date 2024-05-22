@@ -54,7 +54,7 @@
             <TextField fx:id="txtPrecioD" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="txtPrecioM" GridPane.columnIndex="3" />
             <TextField fx:id="txtExistencia" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <ComboBox fx:id="cmbCodigoTipoP" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <ComboBox fx:id="cmbCodigoTipoP" onAction="#agregar" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
             <ComboBox fx:id="cmbCodProv" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
          </children>
       </GridPane>
@@ -81,7 +81,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button fx:id="btnAgregar" mnemonicParsing="false" prefHeight="46.0" prefWidth="170.0" styleClass="button3" stylesheets="@../resource/ElSuperCSS.css" text="Agregar" />
+            <Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#agregar" prefHeight="46.0" prefWidth="170.0" styleClass="button3" stylesheets="@../resource/ElSuperCSS.css" text="Agregar" />
             <Button fx:id="btnEliminar" mnemonicParsing="false" prefHeight="50.0" prefWidth="181.0" styleClass="button3" stylesheets="@../resource/ElSuperCSS.css" text="Eliminar" GridPane.rowIndex="1" />
             <Button fx:id="btnEditar" mnemonicParsing="false" prefHeight="46.0" prefWidth="178.0" styleClass="button3" stylesheets="@../resource/ElSuperCSS.css" text="Editar" GridPane.rowIndex="2" />
             <Button fx:id="btnReporte" mnemonicParsing="false" prefHeight="48.0" prefWidth="177.0" styleClass="button3" stylesheets="@../resource/ElSuperCSS.css" text="Reportes" GridPane.rowIndex="3" />
