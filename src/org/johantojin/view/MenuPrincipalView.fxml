@@ -15,7 +15,7 @@
             <Image url="@../images/FondoPrincipal.png" />
          </image>
       </ImageView>
-      <MenuBar layoutX="7.0" layoutY="14.0" prefHeight="25.0" prefWidth="373.0" style="-fx-background-color: # 0D8ECB;" stylesheets="@../resource/ElSuperCSS.css">
+      <MenuBar layoutX="7.0" layoutY="14.0" prefHeight="25.0" prefWidth="488.0" style="-fx-background-color: # 0D8ECB;" stylesheets="@../resource/ElSuperCSS.css">
         <menus>
           <Menu mnemonicParsing="false" text="General">
             <items>
@@ -47,6 +47,12 @@
                   <MenuItem fx:id="btnFactura" mnemonicParsing="false" onAction="#clicFactura" text="Factura" />
                   <MenuItem fx:id="btnEmpleado" mnemonicParsing="false" onAction="#clicEmpleado" text="Empleado" />
                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Contacto Proveedor">
+              <items>
+                <MenuItem fx:id="btnTelefono" mnemonicParsing="false" onAction="#clicTelefono" text="Telefono Proveedor" />
+                  <MenuItem fx:id="btnGmail" mnemonicParsing="false" onAction="#clicGmail" text="Gmail Proveedor" />
+              </items>
             </Menu>
         </menus>
          <styleClass>
