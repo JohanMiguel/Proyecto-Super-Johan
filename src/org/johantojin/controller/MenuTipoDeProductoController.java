@@ -17,6 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javax.swing.JOptionPane;
 import org.johantojin.bean.TipoDeProducto;
 import org.johantojin.db.Conexion;
@@ -83,7 +84,7 @@ public class MenuTipoDeProductoController implements Initializable {
 
 
     
-    public void seleccionarElemento(){
+    public void seleccionarElemento(MouseEvent even){
         txtCodigoPo.setText(String.valueOf(((TipoDeProducto)tblTipoDeProducto.getSelectionModel().getSelectedItem()).getCodigoTipoProducto()));
         txtDescripcionPo.setText(((TipoDeProducto)tblTipoDeProducto.getSelectionModel().getSelectedItem()).getDescripcion());
     }

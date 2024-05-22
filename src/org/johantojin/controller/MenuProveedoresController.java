@@ -33,6 +33,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javax.swing.JOptionPane;
 import org.johantojin.bean.Proveedores;
 import org.johantojin.db.Conexion;
@@ -100,7 +101,7 @@ public class MenuProveedoresController implements Initializable {
     }
     
 
-    public void seleccionarElemento(){
+    public void seleccionarElemento(MouseEvent even){
         txtCodigoP.setText(String.valueOf(((Proveedores)tblProveedores.getSelectionModel().getSelectedItem()).getCodigoProveedor()));
         txtNit.setText(((Proveedores)tblProveedores.getSelectionModel().getSelectedItem()).getNITProveedor());
         txtNombreP.setText(((Proveedores)tblProveedores.getSelectionModel().getSelectedItem()).getNombreProveedor());

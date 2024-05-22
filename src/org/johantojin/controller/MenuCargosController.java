@@ -17,6 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javax.swing.JOptionPane;
 import org.johantojin.bean.Cargo;
 import org.johantojin.db.Conexion;
@@ -88,7 +89,7 @@ public class MenuCargosController implements Initializable {
     
 
 
-    public void seleccionarElemento(){
+    public void seleccionarElemento(MouseEvent even){
         txtCodigoCa.setText(String.valueOf(((Cargo)tblCargo.getSelectionModel().getSelectedItem()).getCodigoCargoEmpleado()));
         txtNombreCa.setText(((Cargo)tblCargo.getSelectionModel().getSelectedItem()).getNombreCargo());
         txtDescripcionCa.setText(((Cargo)tblCargo.getSelectionModel().getSelectedItem()).getDescripcionCargo());

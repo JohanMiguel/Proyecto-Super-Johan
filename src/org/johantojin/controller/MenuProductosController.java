@@ -15,6 +15,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javax.swing.JOptionPane;
 import org.johantojin.bean.Producto;
 import org.johantojin.bean.Proveedores;
 import org.johantojin.bean.TipoDeProducto;
@@ -64,6 +68,11 @@ public class MenuProductosController implements Initializable{
     @FXML private Button btnReporte;
     
     
+    @FXML private ImageView imgAgregar;
+    @FXML private ImageView imgEliminar;
+    @FXML private ImageView imgEditar;
+    @FXML private ImageView imgReporte;
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         cargaDatos();
@@ -87,7 +96,7 @@ public class MenuProductosController implements Initializable{
     
     
     
-    public void selecionarElementos(){
+    public void seleccionarElemento(MouseEvent event){
        txtCodigoProd.setText(String.valueOf(((Producto)tblProductos.getSelectionModel().getSelectedItem()).getCodigoProducto()));
        txtDescPro.setText(((Producto)tblProductos.getSelectionModel().getSelectedItem()).getDescripcionProducto());
        txtPrecioU.setText(String.valueOf(((Producto)tblProductos.getSelectionModel().getSelectedItem()).getPrecioUnitario()));
@@ -221,7 +230,44 @@ public class MenuProductosController implements Initializable{
          }
      }
      
-     
+     // metodo para eliminar los datos
+    public void eliminar(){
+        switch(tipoDeOperacion){
+            case ACTUALIZAR:
+                desactivarControles();
+                limpiarControles();
+                btnAgregar.setText("Agregar");
+                btnEliminar.setText("Eliminar");
+                btnEditar.setDisable(false);
+                btnReporte.setDisable(false);
+                imgAgregar.setImage(new Image("/org/johantojin/images/Agregar.png"));
+                imgEliminar.setImage(new Image("/org/johantojin/images/Eliminar.png"));                
+                tipoDeOperacion = operaciones.NINGUNO;
+                break;
+            default:
+                if(tblProductos.getSelectionModel().getSelectedItem() != null){
+                    // mustra una pequeña ventana para confirmar la accion
+                    int respuesta = JOptionPane.showConfirmDialog(null, "DESA ELIMINAR EL REGISTRO?",
+                            "Eliminar Productos", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+                    if(respuesta == JOptionPane.YES_NO_OPTION){
+                        try{
+                            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{sp_EliminarProductos(?)}");
+                            procedimiento.setInt(1, ((Producto)tblProductos.getSelectionModel().getSelectedItem()).getCodigoProducto());
+                            procedimiento.execute();
+                            listaProductos.remove(tblProductos.getSelectionModel().getSelectedItem());
+                            
+                            
+                            
+                        }catch(Exception e){
+                            e.printStackTrace();
+                        }
+                    }
+                }else 
+                    JOptionPane.showMessageDialog(null,"SELECIONA UN REGISTRO");
+        }
+        
+        
+    }
      
      public void guardar (){
          Producto registro = new Producto();

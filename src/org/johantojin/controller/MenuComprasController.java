@@ -17,6 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javax.swing.JOptionPane;
 
 import org.johantojin.bean.Compras;
@@ -92,7 +93,7 @@ public class MenuComprasController implements Initializable{
     
 
         
-    public void seleccionarElemento(){
+    public void seleccionarElemento(MouseEvent even){
         txtNumeroDocumento.setText(String.valueOf(((Compras)tblCompras.getSelectionModel().getSelectedItem()).getNumeroDocumento()));
         txtFechaDocumento.setText(((Compras)tblCompras.getSelectionModel().getSelectedItem()).getFechaDocumento());
         txtDescripcionCompras.setText(((Compras)tblCompras.getSelectionModel().getSelectedItem()).getDescripcion());

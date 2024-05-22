@@ -32,6 +32,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javax.swing.JOptionPane;
 
 
@@ -123,7 +124,7 @@ public class MenuClientesController implements Initializable{
     
     
     // metodo para seleccionar los elementos de la tabla Clientes 
-    public void seleccionarElemento(){
+    public void seleccionarElemento(MouseEvent even){
         txtCodigoC.setText(String.valueOf(((Clientes)tblClientes.getSelectionModel().getSelectedItem()).getCodigoCliente()));
         txtNombreC.setText(((Clientes)tblClientes.getSelectionModel().getSelectedItem()).getApellidoCliente());
         txtApellidoC.setText(((Clientes)tblClientes.getSelectionModel().getSelectedItem()).getApellidoCliente());
