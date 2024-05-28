@@ -26,7 +26,7 @@
             <Font size="28.0" />
          </font>
       </Text>
-      <TableView fx:id="tblTipoDeProducto" layoutX="43.0" layoutY="328.0" onMouseClicked="#seleccionarElemento" prefHeight="160.0" prefWidth="574.0">
+      <TableView fx:id="tblTipoDeProducto" layoutX="52.0" layoutY="350.0" onMouseClicked="#seleccionarElemento" prefHeight="170.0" prefWidth="474.0">
         <columns>
           <TableColumn fx:id="colCodigoPo" prefWidth="195.20001220703125" text="codigoTipoDeProducto" />
           <TableColumn fx:id="colDescripcionPo" minWidth="4.79998779296875" prefWidth="275.20001220703125" text="descripcion" />

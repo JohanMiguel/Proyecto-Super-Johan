@@ -20,7 +20,7 @@
             <Image url="@../images/ModuloCargos.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tblCargo" layoutX="36.0" layoutY="400.0" prefHeight="134.0" prefWidth="590.0">
+      <TableView fx:id="tblCargo" layoutX="36.0" layoutY="400.0" onMouseClicked="#seleccionarElemento" prefHeight="134.0" prefWidth="590.0">
         <columns>
           <TableColumn fx:id="colCodigoCa" prefWidth="194.4000244140625" text="codigoCargoEmpleado" />
           <TableColumn fx:id="colNombreCa" prefWidth="245.5999755859375" text="nombreCargo" />

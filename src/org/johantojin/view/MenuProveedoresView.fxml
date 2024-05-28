@@ -48,20 +48,20 @@
          </rowConstraints>
          <children>
             <TextField fx:id="txtCodigoP" GridPane.columnIndex="1" />
-            <Label text="CodigoProveedor" />
-            <Label text="NIT" GridPane.columnIndex="2" />
+            <Label text="CodigoProveedor" textFill="WHITE" />
+            <Label text="NIT" textFill="WHITE" GridPane.columnIndex="2" />
             <TextField fx:id="txtNit" prefHeight="19.0" prefWidth="182.0" GridPane.columnIndex="3" />
-            <Label text="Nombre" GridPane.columnIndex="4" />
-            <Label text="Apellido" GridPane.rowIndex="1" />
-            <Label text="Dirección" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label text="Nombre" textFill="WHITE" GridPane.columnIndex="4" />
+            <Label text="Apellido" textFill="WHITE" GridPane.rowIndex="1" />
+            <Label text="Dirección" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <TextField fx:id="txtNombreP" GridPane.columnIndex="5" />
             <TextField fx:id="txtApellidoP" prefHeight="25.0" prefWidth="121.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="txtDireccionP" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Label text="Contacto" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Label text="Contacto" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1" />
             <TextField fx:id="txtContactoP" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-            <Label text="Razón Social" GridPane.rowIndex="2" />
+            <Label text="Razón Social" textFill="WHITE" GridPane.rowIndex="2" />
             <TextField fx:id="txtRazonP" prefWidth="293.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text="Pagina Web" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Label text="Pagina Web" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <TextField fx:id="txtPaginaP" prefWidth="202.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
          </children>
       </GridPane>

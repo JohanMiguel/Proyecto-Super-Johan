@@ -40,13 +40,13 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label text="numeroDocumento" />
+            <Label text="numeroDocumento" textFill="WHITE" />
             <TextField fx:id="txtNumeroDocumento" prefHeight="25.0" prefWidth="132.0" GridPane.columnIndex="1" />
-            <Label prefHeight="18.0" prefWidth="185.0" text="descripcion" textAlignment="RIGHT" GridPane.columnIndex="2" />
+            <Label prefHeight="18.0" prefWidth="185.0" text="descripcion" textAlignment="RIGHT" textFill="WHITE" GridPane.columnIndex="2" />
             <TextField fx:id="txtDescripcionCompras" prefHeight="25.0" prefWidth="183.0" GridPane.columnIndex="3" />
-            <Label text="fechaDocumento" GridPane.rowIndex="1" />
+            <Label text="fechaDocumento" textFill="WHITE" GridPane.rowIndex="1" />
             <TextField fx:id="txtFechaDocumento" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label prefHeight="18.0" prefWidth="207.0" text="totalDocumento" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label prefHeight="18.0" prefWidth="207.0" text="totalDocumento" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <TextField fx:id="txtTotalDocumento" prefHeight="25.0" prefWidth="199.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
          </children>
       </GridPane>
