@@ -38,7 +38,9 @@ public class MenuPRDController implements Initializable {
     private ObservableList<Producto> listarProductos;
     private ObservableList<Proveedores> listarProveedores;
     private ObservableList<TipoDeProducto> listarTipoProducto;
-    //Setiar los Objetos
+    
+
+//Setiar los Objetos
     //Iniciales de ComboBox cmb"Funcion"
     @FXML private Button btnRegresar;
     
@@ -75,18 +77,21 @@ public class MenuPRDController implements Initializable {
         cmbCodProv.setItems(getProveedores());
     }
 
+    
+    // cargar datos completo
     public void cargarDatos(){
         tblProductos.setItems(getProducto());
-        colCodProd.setCellValueFactory(new PropertyValueFactory<Producto, String>("codigoProductos"));
+        colCodProd.setCellValueFactory(new PropertyValueFactory<Producto, String>("codigoProducto"));
         colDescProd.setCellValueFactory(new PropertyValueFactory<Producto, String>("descripcionProducto"));
         colPrecioU.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioUnitario"));
         colPrecioD.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioDocena"));
         colPrecioM.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioMayor"));
         colExistencia.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("existencia"));
-        colCodTipoProd.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("codigocodigoTipoPro"));
-        colCodProv.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("codigoProveedores"));
+        colCodTipoProd.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("codigoTipoProducto"));
+        colCodProv.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("codigoProveedor"));
     }
 
+    
     public void seleccionarElementos(){
        txtCodigoProd.setText(String.valueOf(((Producto)tblProductos.getSelectionModel().getSelectedItem()).getCodigoProducto()));
         txtDescPro.setText(((Producto)tblProductos.getSelectionModel().getSelectedItem()).getDescripcionProducto());
@@ -97,12 +102,14 @@ public class MenuPRDController implements Initializable {
         cmbCodigoTipoP.getSelectionModel().select(buscarTipoP(((Producto)tblProductos.getSelectionModel().getSelectedItem()).getCodigoTipoProducto()));
  
     }
- 
-    public TipoDeProducto buscarTipoP (int codigoTipoP){
+    
+    
+    // mejorardo
+    public TipoDeProducto buscarTipoP (int codigoTipoProducto){
         TipoDeProducto resultado = null;
         try{
-            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_BuscarProducto(?)}");
-            procedimiento.setInt(1, codigoTipoP);
+            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_BuscarTipoProducto(?)}");
+            procedimiento.setInt(1, codigoTipoProducto);
             ResultSet registro = procedimiento.executeQuery();
             while(registro.next());
                 resultado = new TipoDeProducto(registro.getInt("CodigoTipoProducto"),
@@ -150,10 +157,6 @@ public class MenuPRDController implements Initializable {
 
 
 
-
-
-
-
     public ObservableList<TipoDeProducto> getCodigoTipoPro (){
         ArrayList<TipoDeProducto> lista = new ArrayList<>();
         try{                             
@@ -161,7 +164,7 @@ public class MenuPRDController implements Initializable {
             ResultSet resultado = procedimiento.executeQuery();
 
             while(resultado.next()){
-                lista.add(new TipoDeProducto (resultado.getInt("codigoTipoPro"),
+                lista.add(new TipoDeProducto (resultado.getInt("codigoTipoProducto"),
                                         resultado.getString("descripcion")
                 ));
             }
@@ -170,6 +173,9 @@ public class MenuPRDController implements Initializable {
         }
     return listarTipoProducto = FXCollections.observableArrayList(lista);
     }
+    
+    
+    
     public ObservableList<Proveedores> getProveedores (){
                      
         ArrayList<Proveedores> lista = new ArrayList<>();
@@ -179,7 +185,7 @@ public class MenuPRDController implements Initializable {
             ResultSet resultado = procedimiento.executeQuery();
            
             while(resultado.next()){
-                lista.add(new Proveedores (resultado.getInt("codigoProveedores"),
+                lista.add(new Proveedores (resultado.getInt("codigoProveedor"),
                                         resultado.getString("NITProveedor"),
                                         resultado.getString("nombreProveedor"),
                                         resultado.getString("apellidoProveedor"),
@@ -194,6 +200,9 @@ public class MenuPRDController implements Initializable {
         }
     return listarProveedores = FXCollections.observableArrayList(lista);
     }
+    
+    
+
 
     public void agregar(){
         switch(tipoDeOperaciones){
@@ -219,30 +228,35 @@ public class MenuPRDController implements Initializable {
         }
     }
     public void guardar(){
-        Producto registro = new Producto();
-        registro.setCodigoProducto(Integer.parseInt(txtCodigoProd.getText()));
-        registro.setCodigoProveedor(((Proveedores)cmbCodProv.getSelectionModel().getSelectedItem()).getCodigoProveedor());
-        registro.setCodigoTipoProducto(((TipoDeProducto)cmbCodigoTipoP.getSelectionModel().getSelectedItem()).getCodigoTipoProducto());
-        registro.setDescripcionProducto(txtDescPro.getText());
-        registro.setPrecioUnitario(Double.parseDouble(txtPrecioU.getText()));
-        registro.setPrecioDocena(Double.parseDouble(txtPrecioD.getText()));
-        registro.setPrecioMayor(Double.parseDouble(txtPrecioM.getText()));
-        registro.setExistencia(Integer.parseInt(txtExistencia.getText()));
-            try{
-                PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_AgregarProductos (?, ?, ?, ?, ?, ?, ?, ?)}");
-                procedimiento.setInt(1, registro.getCodigoProducto());
-                procedimiento.setString(2, registro.getDescripcionProducto());
-                procedimiento.setDouble(3, registro.getPrecioUnitario());
-                procedimiento.setDouble(4, registro.getPrecioDocena());
-                procedimiento.setDouble(5, registro.getPrecioMayor());
-                procedimiento.setInt(6, registro.getExistencia());
-                procedimiento.setInt(7, registro.getCodigoTipoProducto());
-                procedimiento.setInt(8, registro.getCodigoProveedor());
-                listarProductos.add(registro);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+    Producto registro = new Producto();
+    registro.setCodigoProducto(Integer.parseInt(txtCodigoProd.getText()));
+    registro.setDescripcionProducto(txtDescPro.getText());
+    registro.setPrecioUnitario(Double.parseDouble(txtPrecioU.getText()));
+    registro.setPrecioDocena(Double.parseDouble(txtPrecioD.getText()));
+    registro.setPrecioMayor(Double.parseDouble(txtPrecioM.getText()));
+    registro.setExistencia(Integer.parseInt(txtExistencia.getText()));
+    registro.setCodigoTipoProducto(((TipoDeProducto)cmbCodigoTipoP.getSelectionModel().getSelectedItem()).getCodigoTipoProducto());
+    registro.setCodigoProveedor(((Proveedores)cmbCodProv.getSelectionModel().getSelectedItem()).getCodigoProveedor());
+
+    try {
+        PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_AgregarProductos (?, ?, ?, ?, ?, ?, ?, ?, ?)}");
+        procedimiento.setInt(1, registro.getCodigoProducto());
+        procedimiento.setString(2, registro.getDescripcionProducto());
+        procedimiento.setDouble(3, registro.getPrecioUnitario());
+        procedimiento.setDouble(4, registro.getPrecioDocena());
+        procedimiento.setDouble(5, registro.getPrecioMayor());
+        procedimiento.setString(6, registro.getImagenProducto()); 
+        procedimiento.setInt(7, registro.getExistencia());
+        procedimiento.setInt(8, registro.getCodigoTipoProducto());
+        procedimiento.setInt(9, registro.getCodigoProveedor());
+        procedimiento.execute();
+        listarProductos.add(registro);
+        tblProductos.refresh(); 
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+}
+
     public void desactivarControles(){
         txtCodigoProd.setEditable(false);
         txtDescPro.setEditable(false);

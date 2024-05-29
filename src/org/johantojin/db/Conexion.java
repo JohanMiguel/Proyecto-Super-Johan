@@ -29,7 +29,7 @@ public class Conexion {
     public Conexion(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/DBElSuper?useSSL=false", "root", "RootKinal2024$");
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/DBElSuper?useSSL=false", "root", "2020591");
         }catch(ClassNotFoundException e){
             e.printStackTrace();
         }catch (InstantiationException e){

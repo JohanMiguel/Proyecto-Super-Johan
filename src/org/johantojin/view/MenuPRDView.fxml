@@ -58,11 +58,11 @@
             <TableColumn fx:id="colCodProd" prefWidth="75.0" text="codigoDescripcion" />
             <TableColumn fx:id="colDescProd" prefWidth="103.99999237060547" text="descripcionProducto" />
             <TableColumn fx:id="colPrecioU" prefWidth="100.80001831054688" text="PrecioUnitario" />
-            <TableColumn fx:id="colPrecioD" prefWidth="123.99993896484375" text="precioDocena" />
-            <TableColumn fx:id="colPrecioM" prefWidth="102.40005493164062" text="PrecioMayor" />
-            <TableColumn fx:id="colExistencia" prefWidth="126.39996337890625" text="existencia" />
-            <TableColumn fx:id="colCodTipoProd" prefWidth="108.800048828125" text="codigoTipoProducto" />
-            <TableColumn fx:id="colCodProv" prefWidth="103.99993896484375" text="codigoProveedor" />
+            <TableColumn fx:id="colPrecioD" prefWidth="101.0" text="precioDocena" />
+            <TableColumn fx:id="colPrecioM" prefWidth="98.0" text="PrecioMayor" />
+            <TableColumn fx:id="colExistencia" prefWidth="93.0" text="existencia" />
+            <TableColumn fx:id="colCodTipoProd" prefWidth="147.0" text="codigoTipoProducto" />
+            <TableColumn fx:id="colCodProv" prefWidth="128.0" text="codigoProveedor" />
          </columns>
       </TableView>
       <GridPane layoutX="670.0" layoutY="79.0" prefHeight="201.0" prefWidth="170.0">
