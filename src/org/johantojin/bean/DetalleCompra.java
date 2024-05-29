@@ -8,11 +8,6 @@ package org.johantojin.bean;
 /**
  *
  * 
-create table DetallesCompra(
-	costoUnitario decimal(10,2) not null,
-	primary key PK_codigoDetalles(codigoDetalles),
-	foreign key FK_codigoProductos(codigoProductos) references Productos(codigoProductos),
-	foreign key FK_numeroDocumento(numeroDocumento) references Compras(numeroDocumento)
 );
  */
 public class DetalleCompra {

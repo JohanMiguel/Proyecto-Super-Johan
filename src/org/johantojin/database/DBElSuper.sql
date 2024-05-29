@@ -49,111 +49,7 @@ create table CargoEmpleado (
 	primary key PK_codigoCargoEmpleado (codigoCargoEmpleado)
 );
 
--- DUPLAS CON FK
-create table Productos (
-    codigoProducto int not null ,
-    descripcionProducto varchar(100) not null,
-    precioUnitario decimal(10,2) not null,
-    precioDocena decimal(10,2) not null,
-    precioMayor decimal(10,2) not null,
-    imagenProducto varchar(25),
-    existencia int not null,
-    
-    codigoTipoProducto int not null,
-    codigoProveedor int not null,
-    
-    primary key  PK_codigoCargoEmpleado(codigoProducto),
-    foreign key FK_codigotipoproducto(codigoTipoProducto) references TipoProducto(codigoTipoProducto),
-    foreign key FK_codigoproveedor(codigoProveedor) references Proveedores(codigoProveedor)
-);
-
-
-create table DealleCompra (
-	codigoDetalleCompra int  not null,
-    costoUnitario decimal (10.2),
-    cantidad int not null,
-    
-    codigoProducto int not null,
-	numeroDocumento int not null,
-    
-    primary key PK_codigoDetalleCompra(codigoDetalleCompra),
-    foreign key FK_codigoProducto(codigoProducto) references Productos(codigoProducto),
-    foreign key FK_numeroDocumento(numeroDocumento) references Compras(numeroDocumento)
-);
-
-create table Factura (
-	numeroFactura int not null, 
-    estado varchar(50),
-    totalFactura decimal(10,2),
-    fechaFactura varchar(45),
-    
-    codigoCliente int not null,
-    codigoEmpleado int not null,
-    primary key PK_numeroFactura(numeroFactura),
-    foreign key FK_codigoCliente(codigoCliente) references Clientes(codigoCliente),
-    foreign key FK_codigoEmpleado(codigoEmpleado) references Empleado(codigoEmpleado)
-	
-
-);
-
-
-
--- dupla de detalle factura
-create table DetalleFactura (
-	codigoDetalleFactura int not null,
-    precioUnitario decimal (10,2) not null,
-    cantidad int not null,
-	numeroFactura int not null,
-	codigoProducto varchar(15) not null,
-	primary key PK_codigoDetalleFactura (codigoDetalleFactura),
-	constraint FK_Factura_DetalleFactura foreign key (numeroFactura)
-	references Factura (numeroFactura),
-	constraint FK_Productos_DetalleFactura foreign key (codigoProducto)
-	references Productos (codigoProducto)
-);
-
-create table Empleado (
-	codigoEmpleado int not null,
-    nombresEmpleado varchar(50),
-    apellidosEmpleado varchar(50),
-    sueldo decimal(10,2),
-    direccion varchar(150),
-    turno varchar(15),
-    
-    codigoCragoEmpleado int not null,
-    
-    primary key PK_codigoEmpleado(codigoEmpleado),
-    foreign key FK_codigoCargoEmpleado(codigoCargoEmpleado) references CargoEmpleado (codigoCargoEmpleado)
-    
-);
-
-
-
-create table EmailProveedor(
-	codigoEmailProveedor int not null,
-    emailProveedor varchar(50),
-    descripcion varchar(100),
-    
-    primary key PK_codigoEmailProveedor(codigoEmailProveedor),
-	foreign key FK_codigoProveedor(codigoProveedor) references Proveedor(codigoProveedor)
-);
-
-
-
-create table telefonoProveedor(
-	codigoTelefonoProveedor int not null,
-    numeroPrincipal varchar(8),
-    numeroSecundario varchar(8),
-    observaciones varchar(45),
-    codigoProveedor int not null,
-    
-    primary key PK_codigoTelefonoProveedor(codigoTelefonoProveedor),
-	foreign key FK_codigoProveedor(codigoProveedor) references Proveedor(codigoProveedor)
-);
--- ----------------------------------------------------------------------------------------------------------
--- --------------------------------------------------------------------------------------------------------
-
-
+-- //////////////////////////////////////  PROCEDIMIENTOS ALMACENADOS   ///////////////////////////////////////////////////////////
 
 -- AGREGAR CLIENTES
 
@@ -630,37 +526,120 @@ call sp_EditarCargoEmpleado(2, 'Nuevo Cargo Z', 'Nueva Descripción del Cargo Z'
 
 
 
+-- ////////////////////////////////////  Segunda etapa de la base de datos ////////////////////////////////////////////////
+create table Productos (
+    codigoProducto int not null,
+    descripcionProducto varchar(100) not null,
+    precioUnitario decimal(10,2) not null,
+    precioDocena decimal(10,2) not null,
+    precioMayor decimal(10,2) not null,
+    imagenProducto varchar(25),
+    existencia int not null,
+    codigoTipoProducto int not null,
+    codigoProveedor int not null,
+    primary key (codigoProducto),
+    foreign key (codigoTipoProducto) references TipoProducto(codigoTipoProducto),
+    foreign key (codigoProveedor) references Proveedores(codigoProveedor)
+);
+
+create table Empleado (
+    codigoEmpleado int not null,
+    nombresEmpleado varchar(50),
+    apellidosEmpleado varchar(50),
+    sueldo decimal(10,2),
+    direccion varchar(150),
+    turno varchar(15),
+    codigoCargoEmpleado int not null,
+    primary key (codigoEmpleado),
+    foreign key (codigoCargoEmpleado) references CargoEmpleado(codigoCargoEmpleado)
+);
+
+create table Factura (
+    numeroFactura int not null,
+    estado varchar(50),
+    totalFactura decimal(10,2),
+    fechaFactura varchar(45),
+    codigoCliente int not null,
+    codigoEmpleado int not null,
+    primary key (numeroFactura),
+    foreign key (codigoCliente) references Clientes(codigoCliente),
+    foreign key (codigoEmpleado) references Empleado(codigoEmpleado)
+);
+
+create table DetallesCompra(
+    codigoDetalles int not null,
+    costoUnitario decimal(10,2) not null,
+    cantidad int,
+    codigoProducto int not null,
+    numeroDocumento int not null,
+    primary key (codigoDetalles),
+    foreign key (codigoProducto) references Productos(codigoProducto),
+    foreign key (numeroDocumento) references Compras(numeroDocumento)
+);
+
+create table DetalleFactura (
+    codigoDetalleFactura int not null,
+    precioUnitario decimal(10,2) not null,
+    cantidad int not null,
+    numeroFactura int not null,
+    codigoProducto int not null,
+    primary key (codigoDetalleFactura),
+    foreign key (numeroFactura) references Factura(numeroFactura),
+    foreign key (codigoProducto) references Productos(codigoProducto)
+);
 
 
 
 
 
+create table EmailProveedor(
+	codigoEmailProveedor int not null,
+    emailProveedor varchar(50),
+    descripcion varchar(100),
+    codigoProveedor int not null,
+    primary key PK_codigoEmailProveedor(codigoEmailProveedor),
+	foreign key FK_codigoProveedor(codigoProveedor) references Proveedores(codigoProveedor)
+);
 
 
 
+/* create table telefonoProveedor(
+	codigoTelefonoProveedor int not null,
+    numeroPrincipal varchar(8),
+    numeroSecundario varchar(8),
+    observaciones varchar(45),
+    codigoProveedor int not null,
+    
+    primary key PK_codigoTelefonoProveedor(codigoTelefonoProveedor),
+	foreign key FK_CodigoProveedor(codigoProveedor) references Proveedores(codigoProveedor)
+);
 
--- ------------------------------------PROCEDIMIENTOS ALMACENADOS DE PRODUCTOS-----------------------------------------------------------------------------------
 
--- Agregar Productos
+*/
+
+-- ////////////////////////////////  Procedimientos almacenados /////////////////////////////////////////////////////////////////////////
 delimiter $$
 create procedure sp_AgregarProductos (in codigoProducto int,in descripcionProducto varchar(100),in precioUnitario decimal(10,2),in precioDocena decimal(10,2),
 									in precioMayor decimal(10,2),in imagenProducto varchar(25),in existencia int,in codigoTipoProducto int,in codigoProveedor int)
 begin
-    insert into Productos (codigoProducto,descripcionProducto,precioUnitario,precioDocena,precioMayor,imagenProducto,existencia,codigoTipoProducto,codigoProveedor) 
-    values (codigoProducto,descripcionProducto,precioUnitario,precioDocena,precioMayor,imagenProducto,existencia,codigoTipoProducto,codigoProveedor);
-end$$
+    insert into Productos (codigoProducto,descripcionProducto,precioUnitario,precioDocena,precioMayor,imagenProducto,
+							existencia,codigoTipoProducto,codigoProveedor) 
+        values (codigoProducto,descripcionProducto,precioUnitario,precioDocena,precioMayor,
+				imagenProducto,existencia,codigoTipoProducto,codigoProveedor);
+end $$
 delimiter ;
-call sp_AgregarProductos(1, 'Producto A', 10.00, 100.00, 500.00, 'imagen.jpg', 50, 1, 1);
-
 
 insert into TipoProducto (codigoTipoProducto, descripcion)
-values (1, 'tipo a');
+values (1, 'Tipo A');
 
 
-insert into Proveedores (codigoProveedor, nitProveedor, nombreProveedor, apellidoProveedor, direccionProveedor, razonSocial, contactoPrincipal, paginaWeb)
-values (1, '1234567890', 'proveedor', 'apellido', 'direccion', 'razon social', 'contacto', 'paginaweb.com');
+insert into Proveedores (codigoProveedor, NITProveedor, nombreProveedor, apellidoProveedor, direccionProveedor, razonSocial, contactoPrincipal, paginaWeb)
+values (1, '1234567890', 'Proveedor A', 'Apellido A', 'Dirección A', 'Razón Social A', 'Contacto Principal A', 'www.proveedorA.com');
 
 
+
+
+call sp_AgregarProductos(3, 'Producto A', 10.00, 100.00, 900.00, 'imagenA.jpg', 50, 1, 1);
 
 
 
@@ -767,22 +746,28 @@ set SQL_SAFE_UPDATES = 1;
 
 
 
+
+
+
+
+
+
+
+
 -- -------------------------------------------------------------------------------------------------------------------
 -- DetalleCompra
 Delimiter $$
-	create procedure sp_AgregarDetalleCompra(in codigoDetalleCompra int, in costoUnitario decimal (10,2),in cantidad int,
+	create procedure sp_AgregarDetallesCompras(in codigoDetalles int, in costoUnitario decimal (10,2),in cantidad int,
 	in codigoProducto varchar(15), in numeroDocumento int) 
 		Begin 
-			Insert into DetalleCompra (codigoDetalleCompra,costoUnitario, cantidad,
+			Insert into DetallesCompra (codigoDetalles,costoUnitario, cantidad,
 			codigoProducto, numeroDocumento) values 
-            (codigoDetalleCompra,costoUnitario, cantidad,
+            (codigoDetalles,costoUnitario, cantidad,
 			codigoProducto, numeroDocumento);
 		End $$
 Delimiter ;
- 
-call sp_AgregarDetalleCompra();
-call sp_AgregarDetalleCompra();
-call sp_AgregarDetalleCompra();
+
+
 
 
 
@@ -800,8 +785,6 @@ Delimiter $$
 			from DetalleCompra DC;
 		End $$
 Delimiter ;
- 
-call sp_ListarDetalleCompra();
 
 
 
@@ -820,9 +803,6 @@ Delimiter $$
 		End $$
 Delimiter ;
  
-call sp_BuscarDetalleCompra();
-
-
 
 --  DetalleCompra
 Delimiter $$
@@ -833,8 +813,6 @@ Delimiter $$
         End $$
 Delimiter ;
  
-call sp_EliminarDetalleCompra();
-call sp_ListarDetalleCompra();
 
 
 
@@ -854,10 +832,6 @@ Delimiter $$
 		End $$
 Delimiter ;
  
-call sp_EditarDetalleCompra(); 
-call sp_ListarDetalleCompra();
-
-
 
 
 
@@ -874,9 +848,6 @@ Delimiter $$
 		End $$
 Delimiter ;
  
-call sp_AgregarTelefonoProveedor();
-call sp_AgregarTelefonoProveedor();
-call sp_AgregarTelefonoProveedor();
 
 
 
@@ -896,7 +867,6 @@ Delimiter $$
 		End $$
 Delimiter ;
  
-call sp_ListarTelefonoProveedor();
 
 
 
@@ -917,8 +887,6 @@ Delimiter $$
 		End $$
 Delimiter ;
  
-call sp_BuscarTelefonoProveedor();
-
 
 
 
@@ -931,9 +899,6 @@ Delimiter $$
         End $$
 Delimiter ;
  
-call sp_EliminarTelefonoProveedor();
-call sp_ListarTelefonoProveedor();
-
 
 
 -- Editar TelefonoProveedor
@@ -951,12 +916,6 @@ Delimiter $$
             where codigoTelefonoProveedor = codTeleProv;
 		End $$
 Delimiter ;
- 
-call sp_EditarTelefonoProveedor(); 
-call sp_ListarTelefonoProveedor();
--- 
-
-
 
  
 
@@ -970,10 +929,6 @@ Delimiter $$
 		End $$
 Delimiter ;
  
-call sp_AgregarEmailProveedor();
-call sp_AgregarEmailProveedor();
-call sp_AgregarEmailProveedor();
-
 
 
 
@@ -991,7 +946,8 @@ Delimiter $$
 		End $$
 Delimiter ;
  
-call sp_ListarEmailProveedor();
+
+
 
 
 
@@ -1010,7 +966,6 @@ Delimiter $$
 		End $$
 Delimiter ;
  
-call sp_BuscarEmailProveedor();
 
 
 
@@ -1023,10 +978,6 @@ Delimiter $$
         End $$
 Delimiter ;
  
-call sp_EliminarEmailProveedor();
-call sp_ListarEmailProveedor();
-
-
 
 
 -- Editar EmailProveedor
@@ -1043,9 +994,6 @@ Delimiter $$
 		End $$
 Delimiter ;
  
-call sp_EditarEmailProveedor(); 
-call sp_ListarEmailProveedor();
-
 
  
  
@@ -1060,10 +1008,6 @@ Delimiter $$
 		End $$
 Delimiter ;
  
-call sp_AgregarEmpleados();
-call sp_AgregarEmpleados();
-call sp_AgregarEmpleados();
-
 
 
 
@@ -1084,7 +1028,6 @@ Delimiter $$
 		End $$
 Delimiter ;
  
-call sp_ListarEmpleados();
 
 
 
@@ -1107,7 +1050,6 @@ Delimiter $$
 		End $$
 Delimiter ;
  
-call sp_BuscarEmpleados();
 
 
 -- Eliminar Empleados
@@ -1119,8 +1061,6 @@ Delimiter $$
         End $$
 Delimiter ;
  
-call sp_EliminarEmpleados();
-call sp_ListarEmpleados();
 
 
 
@@ -1143,24 +1083,19 @@ Delimiter $$
 		End $$
 Delimiter ;
  
-call sp_EditarEmpleados(); 
-call sp_ListarEmpleados();
- 
  
 -- ----------------------------------------------------------Factura-------------------------------------------------------------
 -- Agregar Factura
-Delimiter $$
-	create procedure sp_AgregarFactura(in numeroFactura int, in estado varchar(50),in totalFactura decimal(10,2),in fechaFactura varchar(45), 
-    in codigoCliente int, in codigoEmpleado int) 
-		Begin 
-			Insert into Factura (numeroFactura,estado, totalFactura, fechaFactura, codigoCliente, codigoEmpleado) values 
-            (numeroFactura,estado, totalFactura, fechaFactura, codigoCliente, codigoEmpleado);
-		End $$
-Delimiter ;
- 
-call sp_AgregarFactura();
-call sp_AgregarFactura();
-call sp_AgregarFactura();
+delimiter $$
+create procedure sp_agregarfactura (in numerofactura int, in estado varchar(50), in totalfactura decimal(10,2), 
+									in fechafactura varchar(45),in codigocliente int, in codigoempleado int)
+begin
+    insert into factura (numerofactura, estado, totalfactura, fechafactura, codigocliente, codigoempleado) 
+    values (numerofactura, estado, totalfactura, fechafactura, codigocliente, codigoempleado);
+end$$
+delimiter ;
+
+-- Llamar al procedimiento para agregar datos en factura
 
 
 
@@ -1179,8 +1114,7 @@ Delimiter $$
 			from Factura F;
 		End $$
 Delimiter ;
- 
-call sp_ListarFactura();
+
 
 
 
@@ -1202,7 +1136,6 @@ Delimiter $$
 		End $$
 Delimiter ;
  
-call sp_BuscarFactura();
 
 
 
@@ -1217,8 +1150,6 @@ Delimiter $$
         End $$
 Delimiter ;
  
-call sp_EliminarFactura();
-call sp_ListarFactura();
 
 
 
@@ -1240,12 +1171,6 @@ Delimiter $$
 			where numeroFactura = numFact;
 		End $$
 Delimiter ;
- 
-call sp_EditarFactura(); 
-call sp_ListarFactura();
-
-
-
 
 
 
@@ -1254,17 +1179,16 @@ call sp_ListarFactura();
 
 
 -- Agregar DetalleFactura
-Delimiter $$
-	create procedure sp_AgregarDetalleFactura(in codigoDetalleFactura int, in precioUnitario decimal (10,2),in cantidad int, in numeroFactura int ,in codigoProducto varchar(15)) 
-		Begin 
-			Insert into Factura (codigoDetalleFactura,precioUnitario, cantidad, numeroFactura, codigoProducto) values 
-            (codigoDetalleFactura,precioUnitario, cantidad, numeroFactura, codigoProducto);
-		End $$
-Delimiter ;
- 
-call sp_AgregarDetalleFactura();
-call sp_AgregarDetalleFactura();
-call sp_AgregarDetalleFactura();
+delimiter $$
+create procedure sp_AgregarDetalleFactura (in codigodetallefactura int, in preciounitario decimal(10,2), 
+											in cantidad int, in numerofactura int, in codigoproducto int)
+begin
+    insert into detallefactura (codigodetallefactura, preciounitario, cantidad, numerofactura, codigoproducto) 
+    values (codigodetallefactura, preciounitario, cantidad, numerofactura, codigoproducto);
+end$$
+delimiter ;
+
+-- Llamar al procedimiento para agregar datos
 
 
 
@@ -1286,7 +1210,6 @@ Delimiter $$
 		End $$
 Delimiter ;
  
-call sp_ListarDetalleFactura();
 
 
 
@@ -1308,7 +1231,6 @@ Delimiter $$
 		End $$
 Delimiter ;
  
-call sp_BuscarDetalleFactura();
 
 
 
@@ -1324,9 +1246,6 @@ Delimiter $$
         End $$
 Delimiter ;
  
-call sp_EliminarDetalleFactura();
-call sp_ListarDetalleFactura();
-
 
 
 
@@ -1344,48 +1263,73 @@ Delimiter $$
 			where codigoDetalleFactura = codDetFac;
 		End $$
 Delimiter ;
+
+
+
+
+
+
+
+
+
+/*
+
+call sp_ListarEmailProveedor();
+
+call sp_AgregarEmailProveedor();
+call sp_AgregarEmailProveedor();
+call sp_AgregarEmailProveedor();
+
  
-call sp_EditarDetalleFactura(); 
-call sp_ListarDetalleFactura();
+call sp_EditarTelefonoProveedor(); 
+call sp_ListarTelefonoProveedor();
+-- 
+
+call sp_EliminarTelefonoProveedor();
+call sp_ListarTelefonoProveedor();
+
+call sp_BuscarTelefonoProveedor();
+
+call sp_ListarTelefonoProveedor();
+call sp_AgregarTelefonoProveedor();
+call sp_AgregarTelefonoProveedor();
+call sp_AgregarTelefonoProveedor();
+
+call sp_EditarDetalleCompra(); 
+call sp_ListarDetalleCompra();
+
+call sp_EliminarDetalleCompra();
+call sp_ListarDetalleCompra();
+
+call sp_BuscarDetalleCompra();
+ 
+call sp_ListarDetalleCompra();
+call sp_AgregarDetalleCompra(1, 10.00, 10, '1', 1);
+call sp_BuscarEmailProveedor();
+
+call sp_EliminarEmailProveedor();
+call sp_ListarEmailProveedor();
+
+ 
+call sp_AgregarEmpleados();
+call sp_AgregarEmpleados();
+call sp_AgregarEmpleados();
 
 
+call sp_ListarEmpleados();
+
+call sp_BuscarEmpleados();
+ 
+call sp_ListarFactura();
+call sp_EliminarEmpleados();
+call sp_ListarEmpleados();
+call sp_BuscarFactura();
+call sp_EliminarFactura();
+call sp_ListarFactura();
+ 
+call sp_EditarFactura(); 
+call sp_ListarFactura();
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+*/
 

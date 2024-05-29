@@ -22,6 +22,27 @@ public class MenuDetalleFacturaController implements Initializable{
     
     @FXML private Button btnRegresar;
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // mas
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         

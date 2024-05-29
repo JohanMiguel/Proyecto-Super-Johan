@@ -166,7 +166,9 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     public void clicGmail (ActionEvent event){
         if (event.getSource() == btnGmail){
-            escenarioPrincipal.menuGmailProveedorView();
+            escenarioPrincipal.menuGmailProveedorView()
+                    
+                    ;
         }
     }
     
