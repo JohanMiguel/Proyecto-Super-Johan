@@ -44,20 +44,20 @@
             <Label text="cantidad" textFill="WHITE" GridPane.rowIndex="2" />
             <Label text="codigoProductos" textFill="WHITE" GridPane.columnIndex="2" />
             <Label text="numeroDocumento" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <ComboBox prefWidth="150.0" GridPane.columnIndex="3" />
-            <ComboBox prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <TextField fx:id="txtCodigoDetalles" GridPane.columnIndex="1" />
+            <TextField fx:id="txtCostoUnitario" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtCantidad" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ComboBox fx:id="cmbCodigoProd" prefWidth="150.0" GridPane.columnIndex="3" />
+            <ComboBox fx:id="cmbNumeroDocumento" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <TableView layoutX="29.0" layoutY="320.0" prefHeight="200.0" prefWidth="543.0">
+      <TableView fx:id="tblDetalleCompras" layoutX="29.0" layoutY="320.0" prefHeight="200.0" prefWidth="543.0">
          <columns>
-            <TableColumn prefWidth="119.0" text="codigoDetalles" />
-            <TableColumn prefWidth="99.0" text="costoUnitario" />
-            <TableColumn minWidth="0.0" prefWidth="72.0" text="cantidad" />
-            <TableColumn prefWidth="117.99993896484375" text="codigoProductos" />
-            <TableColumn minWidth="0.0" prefWidth="133.0" text="numeroDocumento" />
+            <TableColumn fx:id="colCodigoDetalles" prefWidth="119.0" text="codigoDetalles" />
+            <TableColumn fx:id="colCostoUnitario" prefWidth="99.0" text="costoUnitario" />
+            <TableColumn fx:id="colCantidad" minWidth="0.0" prefWidth="72.0" text="cantidad" />
+            <TableColumn fx:id="colCodigoProd" prefWidth="117.99993896484375" text="codigoProductos" />
+            <TableColumn fx:id="colNumeroDocumento" minWidth="0.0" prefWidth="133.0" text="numeroDocumento" />
          </columns>
       </TableView>
       <GridPane layoutX="690.0" layoutY="99.0" prefHeight="201.0" prefWidth="170.0">
@@ -71,7 +71,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button fx:id="btnAgregar" mnemonicParsing="false" prefHeight="46.0" prefWidth="170.0" styleClass="button3" stylesheets="@../resource/ElSuperCSS.css" text="Agregar" />
+            <Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#agregar" prefHeight="46.0" prefWidth="170.0" styleClass="button3" stylesheets="@../resource/ElSuperCSS.css" text="Agregar" />
             <Button fx:id="btnEliminar" mnemonicParsing="false" prefHeight="50.0" prefWidth="181.0" styleClass="button3" stylesheets="@../resource/ElSuperCSS.css" text="Eliminar" GridPane.rowIndex="1" />
             <Button fx:id="btnEditar" mnemonicParsing="false" prefHeight="46.0" prefWidth="178.0" styleClass="button3" stylesheets="@../resource/ElSuperCSS.css" text="Editar" GridPane.rowIndex="2" />
             <Button fx:id="btnReporte" mnemonicParsing="false" prefHeight="48.0" prefWidth="177.0" styleClass="button3" stylesheets="@../resource/ElSuperCSS.css" text="Reportes" GridPane.rowIndex="3" />

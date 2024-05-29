@@ -55,7 +55,7 @@
       </GridPane>
       <TableView fx:id="tblProductos" layoutX="29.0" layoutY="296.0" prefHeight="200.0" prefWidth="843.0">
          <columns>
-            <TableColumn fx:id="colCodProd" prefWidth="75.0" text="codigoDescripcion" />
+            <TableColumn fx:id="colCodProd" prefWidth="75.0" text="codigoProducto" />
             <TableColumn fx:id="colDescProd" prefWidth="103.99999237060547" text="descripcionProducto" />
             <TableColumn fx:id="colPrecioU" prefWidth="100.80001831054688" text="PrecioUnitario" />
             <TableColumn fx:id="colPrecioD" prefWidth="101.0" text="precioDocena" />
