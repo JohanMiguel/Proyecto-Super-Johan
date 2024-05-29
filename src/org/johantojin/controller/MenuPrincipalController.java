@@ -158,7 +158,7 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     public void clicTelefono (ActionEvent event){
         if (event.getSource() == btnTelefono){
-            escenarioPrincipal.menuDetalleCompraView();
+            escenarioPrincipal.menuTelefonoProveedorView();
         }
     }
     
@@ -166,7 +166,7 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     public void clicGmail (ActionEvent event){
         if (event.getSource() == btnGmail){
-            escenarioPrincipal.menuDetalleCompraView();
+            escenarioPrincipal.menuGmailProveedorView();
         }
     }
     

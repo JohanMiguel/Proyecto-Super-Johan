@@ -32,7 +32,7 @@ public class MenuGmailController implements Initializable{
     }
     
     @FXML
-    public void regresarMenuPrincipal (ActionEvent event){
+    public void regresar (ActionEvent event){
         if (event.getSource() == btnRegresar){
         escenarioPrincipal.menuPrincipalView();
         }
