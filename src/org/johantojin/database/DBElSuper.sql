@@ -603,19 +603,18 @@ create table EmailProveedor(
 
 
 
-/* create table telefonoProveedor(
+create table telefonoProveedor(
 	codigoTelefonoProveedor int not null,
     numeroPrincipal varchar(8),
     numeroSecundario varchar(8),
     observaciones varchar(45),
-    codigoProveedor int not null,
     
+    codigoProveedor int not null,
     primary key PK_codigoTelefonoProveedor(codigoTelefonoProveedor),
-	foreign key FK_CodigoProveedor(codigoProveedor) references Proveedores(codigoProveedor)
+	foreign key FK_codigoProveedores(codigoProveedor) references Proveedores(codigoProveedor)
 );
 
 
-*/
 
 -- ////////////////////////////////  Procedimientos almacenados /////////////////////////////////////////////////////////////////////////
 delimiter $$
@@ -768,10 +767,24 @@ Delimiter $$
 Delimiter ;
 
 call sp_AgregarProductos(9, 'Producto 9', 10.00, 100.00, 900.00, 'imagenA.jpg', 50, 1, 1);
-           
 call sp_AgregarCompras (9, 'mayo 9', 'producocomprado', '50');
-call sp_AgregarDetallesCompras(9,10.00, 50, 9, 9);
 
+
+
+call sp_AgregarProductos(10, 'Producto 11', 10.00, 100.00, 900.00, 'imagenA.jpg', 50, 1, 1);
+call sp_AgregarCompras (10, 'mayo 9', 'producocomprado', '50');
+
+
+
+call sp_AgregarProductos(11, 'Producto 11', 10.00, 100.00, 900.00, 'imagenA.jpg', 50, 1, 1);
+call sp_AgregarCompras (11, 'mayo 9', 'producocomprado', '50');
+
+
+
+
+call sp_AgregarDetallesCompras(9,10.00, 50, 9, 9);
+call sp_AgregarDetallesCompras(10,10.00, 50, 10, 10);
+call sp_AgregarDetallesCompras(11,10.00, 50, 11, 11);
 
 
 -- Listar DetalleCompra 
@@ -792,7 +805,7 @@ call sp_ListarDetalleCompra();
 
 -- Buscar DetalleCompra
 Delimiter $$
-	create procedure sp_BuscarDetalleCompra(in codDetCom int)
+	create procedure sp_BuscarDetalleCompras2(in codDetCom int)
 		Begin 
 			select
             DC.codigoDetalles,
@@ -800,32 +813,38 @@ Delimiter $$
             DC.cantidad,
             DC.codigoProducto,
             DC.numeroDocumento
-			from DetallesCompra DC;
-			where codigoDetalleCompra = codDetCom;
+			from DetallesCompra DC
+			where codigoDetalles = codDetCom;
 		End $$
 Delimiter ;
- 
+call sp_BuscarDetalleCompras2(9);
+
+
+
 
 --  DetalleCompra
 Delimiter $$
-	create procedure sp_EliminarDetalleCompra(in codDetCom int)
+	create procedure sp_EliminarDetalleCompras(in codDetCom int)
 		Begin
-			Delete from DetalleCompra
-				where codigoDetalleCompra = codDetCom;
+			Delete from DetallesCompra
+				where codigoDetalles = codDetCom;
         End $$
 Delimiter ;
- 
+
+call sp_EliminarDetalleCompras(0);
+
+
 
 
 
 -- Editar DetalleCompra
 Delimiter $$
-	create procedure sp_EditarDetalleCompra(in codDetCom varchar(15),in cosUni decimal (10,2),
+	create procedure sp_EditarDetalleCompras(in codDetCom varchar(15),in cosUni decimal (10,2),
 	in cant int, in codProd int, in numDoc int) 
 		Begin 
-			update DetalleCompra DC
+			update DetallesCompra DC
 				set
-			DC.codigoDetalleCompra =  codDetCom,
+			DC.codigoDetalles =  codDetCom,
             DC.costoUnitario = cosUni,
             DC.cantidad = cant ,
             DC.codigoProducto = codProd,
@@ -834,10 +853,8 @@ Delimiter $$
 		End $$
 Delimiter ;
  
+--  call sp_EditarDetalleCompras();
 
-
-
- 
  
 -- ------------------------------------------------------------ TelefonoProveedor-----------------------------------------
 -- gregar TelefonoProveedor
@@ -849,9 +866,16 @@ Delimiter $$
             (codigoTelefonoProveedor,numeroPrincipal, numeroSecundario, observaciones, codigoProveedor);
 		End $$
 Delimiter ;
- 
 
 
+call sp_AgregarProveedores(15,'124585003','proveedor1','proveedor1','proveedor1','proveedor1','59846251','proveedor1@gmail.com');
+call sp_AgregarTelefonoProveedor(1,'45454554', '23232323', 'numero1', 15);
+
+call sp_AgregarProveedores(12,'124585003','proveedor1','proveedor1','proveedor1','proveedor1','59846251','proveedor1@gmail.com');
+call sp_AgregarTelefonoProveedor(12,'45454554', '23232323', 'numero1', 12);
+
+call sp_AgregarProveedores(16,'124585003','proveedor1','proveedor1','proveedor1','proveedor1','59846251','proveedor1@gmail.com');
+call sp_AgregarTelefonoProveedor(16,'45454554', '23232323', 'numero1', 13);
 
 
 
@@ -868,7 +892,7 @@ Delimiter $$
 			from TelefonoProveedor TP;
 		End $$
 Delimiter ;
- 
+call sp_ListarTelefonoProveedor();
 
 
 
@@ -888,7 +912,7 @@ Delimiter $$
 			where codigoTelefonoProveedor = codTeleProv;
 		End $$
 Delimiter ;
- 
+call sp_BuscarTelefonoProveedor(13);
 
 
 
@@ -900,7 +924,7 @@ Delimiter $$
 				where codigoTelefonoProveedor = codTeleProv;
         End $$
 Delimiter ;
- 
+call sp_EliminarTelefonoProveedor(0);
 
 
 -- Editar TelefonoProveedor
@@ -918,7 +942,7 @@ Delimiter $$
             where codigoTelefonoProveedor = codTeleProv;
 		End $$
 Delimiter ;
-
+-- call sp_EditarTelefonoProveedor();
  
 
 -- ----------------------------------------------------- EmailProveedor --------------------------------------------
@@ -1002,16 +1026,21 @@ Delimiter ;
 -- -------------------------------------------------------Empleados----------------------------------------------------------------------------
 -- Agregar Empleados
 Delimiter $$
-	create procedure sp_AgregarEmpleados(in codigoEmpleado int, in nombreEmpleado varchar(30),in apellidoEmpleado varchar(100),in sueldo decimal (10,2), 
+	create procedure sp_AgregarEmpleados(in codigoEmpleado int, in nombresEmpleado varchar(30),in apellidosEmpleado varchar(100),in sueldo decimal (10,2), 
     in direccion varchar(150), in turno varchar (15), in codigoCargoEmpleado int) 
 		Begin 
-			Insert into Empleados (codigoEmpleado,nombreEmpleado, apellidoEmpleado, sueldo, direccion, turno, codigoCargoEmpleado) values 
-            (codigoEmpleado,nombreEmpleado, apellidoEmpleado, sueldo, direccion, turno, codigoCargoEmpleado);
+			Insert into Empleado (codigoEmpleado,nombresEmpleado, apellidosEmpleado, sueldo, direccion, turno, codigoCargoEmpleado) values 
+            (codigoEmpleado,nombresEmpleado, apellidosEmpleado, sueldo, direccion, turno, codigoCargoEmpleado);
 		End $$
 Delimiter ;
- 
+call sp_AgregarCargoEmpleado(10, 'Cargo A', 'Descripción del Cargo A');
+call sp_AgregarEmpleados(1,'nombre', 'apellido', 100.00, 'direccion', 'turno', 10);
 
+call sp_AgregarCargoEmpleado(11, 'Cargo A', 'Descripción del Cargo A');
+call sp_AgregarEmpleados(2,'nombre', 'apellido', 100.00, 'direccion', 'turno', 11);
 
+call sp_AgregarCargoEmpleado(12, 'Cargo A', 'Descripción del Cargo A');
+call sp_AgregarEmpleados(3,'nombre', 'apellido', 100.00, 'direccion', 'turno', 12);
 
 
 -- Listar Empleados
@@ -1020,16 +1049,16 @@ Delimiter $$
 		Begin 
 			select
             E.codigoEmpleado,
-			E.nombreEmpleado,
-            E.apellidoEmpleado,
+			E.nombresEmpleado,
+            E.apellidosEmpleado,
             E.sueldo,
             E.direccion,
             E.turno,
             E.codigoCargoEmpleado
-			from Empleados E;
+			from Empleado E;
 		End $$
 Delimiter ;
- 
+call sp_ListarEmpleados();
 
 
 
@@ -1037,32 +1066,32 @@ Delimiter ;
 
 -- Buscar Empleados
 Delimiter $$
-	create procedure sp_BuscarEmpleados(in codEmp int)
+	create procedure sp_BuscarEmpleados1(in codEmp int)
 		Begin 
 			select
             E.codigoEmpleado,
-			E.nombreEmpleado,
-            E.apellidoEmpleado,
+			E.nombresEmpleado,
+            E.apellidosEmpleado,
             E.sueldo,
             E.direccion,
             E.turno,
             E.codigoCargoEmpleado
-			from Empleados E
+			from Empleado E
 			where codigoEmpleado = codEmp;
 		End $$
 Delimiter ;
- 
+ call sp_BuscarEmpleados1(1);
 
 
 -- Eliminar Empleados
 Delimiter $$
-	create procedure sp_EliminarEmpleados(in codEmp int)
+	create procedure sp_EliminarEmpleados1(in codEmp int)
 		Begin
-			Delete from Empleados
+			Delete from Empleado
 				where codigoEmpleado = codEmp;
         End $$
 Delimiter ;
- 
+ call sp_EliminarEmpleados1(1);
 
 
 
@@ -1085,20 +1114,44 @@ Delimiter $$
 		End $$
 Delimiter ;
  
+ -- call sp_EditarEmpleados();
  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+-- --------------------------------------------------------------------------------------------------------
 -- ----------------------------------------------------------Factura-------------------------------------------------------------
 -- Agregar Factura
 delimiter $$
-create procedure sp_agregarfactura (in numerofactura int, in estado varchar(50), in totalfactura decimal(10,2), 
-									in fechafactura varchar(45),in codigocliente int, in codigoempleado int)
+create procedure sp_AgregarFacturas (in numeroFactura int, in estado varchar(50), in totalfactura decimal(10,2), 
+									in fechafactura varchar(45),in codigoCliente int, in codigoEmpleado int)
 begin
-    insert into factura (numerofactura, estado, totalfactura, fechafactura, codigocliente, codigoempleado) 
-    values (numerofactura, estado, totalfactura, fechafactura, codigocliente, codigoempleado);
+    insert into Factura (numeroFactura, estado, totalFactura, fechaFactura, codigoCliente, codigoEmpleado) 
+    values (numeroFactura, estado, totalFactura, fechaFactura, codigoCliente, codigoEmpleado);
 end$$
 delimiter ;
 
--- Llamar al procedimiento para agregar datos en factura
 
+call sp_AgregarFacturas (1, 'activo', 100.00, 'enero', 1, 1);
+/*
+
+create table Factura (
+    numeroFactura int not null,
+    estado varchar(50),
+    totalFactura decimal(10,2),
+    fechaFactura varchar(45),
+    codigoCliente int not null,
+    codigoEmpleado int not null,
+    primary key (numeroFactura),
+    foreign key (codigoCliente) references Clientes(codigoCliente),
+    foreign key (codigoEmpleado) references Empleado(codigoEmpleado)
+);
+
+*/
 
 
 

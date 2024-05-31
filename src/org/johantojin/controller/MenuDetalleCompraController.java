@@ -64,7 +64,7 @@ public class MenuDetalleCompraController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         cargarDatos();
-        cmbCodigoProd.setItems(getProductos());
+        cmbCodigoProd.setItems(getProducto());
         cmbNumeroDocumento.setItems(getCompras());
     }
 
@@ -73,21 +73,22 @@ public class MenuDetalleCompraController implements Initializable {
         colCodigoDetalles.setCellValueFactory(new PropertyValueFactory<>("codigoDetalles"));
         colCostoUnitario.setCellValueFactory(new PropertyValueFactory<>("costoUnitario"));
         colCantidad.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
-        colCodigoProd.setCellValueFactory(new PropertyValueFactory<>("codigoProductos"));
+        colCodigoProd.setCellValueFactory(new PropertyValueFactory<>("codigoProducto"));
         colNumeroDocumento.setCellValueFactory(new PropertyValueFactory<>("numeroDocumento"));
     }
+
 
     public ObservableList<DetalleCompra> getDetalleCompras() {
         ArrayList<DetalleCompra> lista = new ArrayList<>();
         try {
-            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_ListarDetallesCompra()}");
+            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_ListarDetalleCompra()}");
             ResultSet resultado = procedimiento.executeQuery();
             while (resultado.next()) {
                 lista.add(new DetalleCompra(
                     resultado.getInt("codigoDetalles"),
                     resultado.getDouble("costoUnitario"),
                     resultado.getInt("cantidad"),
-                    resultado.getInt("codigoProductos"),
+                    resultado.getInt("codigoProducto"),
                     resultado.getInt("numeroDocumento")
                 ));
             }
@@ -97,7 +98,7 @@ public class MenuDetalleCompraController implements Initializable {
         return listarDetallesCompra = FXCollections.observableArrayList(lista);
     }
 
-    public ObservableList<Producto> getProductos() {
+    public ObservableList<Producto> getProducto() {
         ArrayList<Producto> lista = new ArrayList<>();
         try {
             PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_ListarProductos()}");
