@@ -640,7 +640,7 @@ values (1, '1234567890', 'Proveedor A', 'Apellido A', 'Dirección A', 'Razón So
 
 
 call sp_AgregarProductos(3, 'Producto A', 10.00, 100.00, 900.00, 'imagenA.jpg', 50, 1, 1);
-
+call sp_AgregarProductos(8, 'Producto A', 10.00, 100.00, 900.00, 'imagenA.jpg', 50, 1, 1);
 
 
 
@@ -758,7 +758,7 @@ set SQL_SAFE_UPDATES = 1;
 -- DetalleCompra
 Delimiter $$
 	create procedure sp_AgregarDetallesCompras(in codigoDetalles int, in costoUnitario decimal (10,2),in cantidad int,
-	in codigoProducto varchar(15), in numeroDocumento int) 
+	in codigoProducto int, in numeroDocumento int) 
 		Begin 
 			Insert into DetallesCompra (codigoDetalles,costoUnitario, cantidad,
 			codigoProducto, numeroDocumento) values 
@@ -767,8 +767,10 @@ Delimiter $$
 		End $$
 Delimiter ;
 
-
-
+call sp_AgregarProductos(9, 'Producto 9', 10.00, 100.00, 900.00, 'imagenA.jpg', 50, 1, 1);
+           
+call sp_AgregarCompras (9, 'mayo 9', 'producocomprado', '50');
+call sp_AgregarDetallesCompras(9,10.00, 50, 9, 9);
 
 
 
@@ -777,28 +779,28 @@ Delimiter $$
 	create procedure sp_ListarDetalleCompra()
 		Begin 
 			select
-            DC.codigoDetalleCompra,
+            DC.codigoDetalles,
 			DC.costoUnitario,
             DC.cantidad,
             DC.codigoProducto,
             DC.numeroDocumento
-			from DetalleCompra DC;
+			from DetallesCompra DC;
 		End $$
 Delimiter ;
 
-
+call sp_ListarDetalleCompra();
 
 -- Buscar DetalleCompra
 Delimiter $$
 	create procedure sp_BuscarDetalleCompra(in codDetCom int)
 		Begin 
 			select
-            DC.codigoDetalleCompra,
+            DC.codigoDetalles,
 			DC.costoUnitario,
             DC.cantidad,
             DC.codigoProducto,
             DC.numeroDocumento
-			from DetalleCompra DC
+			from DetallesCompra DC;
 			where codigoDetalleCompra = codDetCom;
 		End $$
 Delimiter ;
@@ -819,7 +821,7 @@ Delimiter ;
 -- Editar DetalleCompra
 Delimiter $$
 	create procedure sp_EditarDetalleCompra(in codDetCom varchar(15),in cosUni decimal (10,2),
-	in cant int, in codProd varchar(15), in numDoc int) 
+	in cant int, in codProd int, in numDoc int) 
 		Begin 
 			update DetalleCompra DC
 				set

@@ -126,7 +126,10 @@ public class MenuClientesController implements Initializable{
     // metodo para seleccionar los elementos de la tabla Clientes 
     public void seleccionarElemento(MouseEvent even){
         txtCodigoC.setText(String.valueOf(((Clientes)tblClientes.getSelectionModel().getSelectedItem()).getCodigoCliente()));
-        txtNombreC.setText(((Clientes)tblClientes.getSelectionModel().getSelectedItem()).getApellidoCliente());
+        
+        
+        
+        txtNombreC.setText(((Clientes)tblClientes.getSelectionModel().getSelectedItem()).getNombreCliente());
         txtApellidoC.setText(((Clientes)tblClientes.getSelectionModel().getSelectedItem()).getApellidoCliente());
         txtNit.setText(((Clientes)tblClientes.getSelectionModel().getSelectedItem()).getNITCliente());
         txtTelefonoC.setText(((Clientes)tblClientes.getSelectionModel().getSelectedItem()).getTelefonoCliente());

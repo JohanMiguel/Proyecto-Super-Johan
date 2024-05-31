@@ -105,7 +105,7 @@ public class MenuComprasController implements Initializable{
     public ObservableList<Compras> getCompras(){
         ArrayList<Compras> Lista = new ArrayList<>();
         try{
-            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_ListarCompras()}");
+            PreparedStatement procedimiento = Conexion.getInstance().getConexion().prepareCall("{call sp_ListarDetalleCompra()}");
             ResultSet resultado = procedimiento.executeQuery();
             while (resultado.next()){
                 Lista.add(new Compras (resultado.getInt("numeroDocumento"),
