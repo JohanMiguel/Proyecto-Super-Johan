@@ -123,7 +123,7 @@ Delimiter $$
         End $$
 Delimiter ;
 
-call sp_EliminarClientes(1);
+call sp_EliminarClientes(0);
 call sp_ListarClientes;
 
 
@@ -237,7 +237,7 @@ Delimiter $$
 		End $$
 Delimiter ;
  
-call sp_EliminarProveedores(1);
+call sp_EliminarProveedores(0);
 call sp_ListarProveedores(); 
 
 
@@ -338,7 +338,7 @@ Delimiter $$
         End $$
 Delimiter ;
 
-call sp_EliminarCompras(1);
+call sp_EliminarCompras(0);
 call sp_ListarCompras;
 
 
@@ -422,7 +422,7 @@ begin
 end $$
 delimiter ;
 
-call sp_EliminarTipoProducto(1);
+call sp_EliminarTipoProducto(0);
 call sp_ListarTipoProducto();
 
 
@@ -505,7 +505,7 @@ begin
     where codigoCargoEmpleado = codCarhoEmpleado;
 end $$
 delimiter ;
-call sp_EliminarCargoEmpleado(1);
+call sp_EliminarCargoEmpleado(0);
 
 
 
@@ -628,18 +628,9 @@ begin
 end $$
 delimiter ;
 
-insert into TipoProducto (codigoTipoProducto, descripcion)
-values (1, 'Tipo A');
-
-
-insert into Proveedores (codigoProveedor, NITProveedor, nombreProveedor, apellidoProveedor, direccionProveedor, razonSocial, contactoPrincipal, paginaWeb)
-values (1, '1234567890', 'Proveedor A', 'Apellido A', 'Dirección A', 'Razón Social A', 'Contacto Principal A', 'www.proveedorA.com');
-
-
-
-
-call sp_AgregarProductos(3, 'Producto A', 10.00, 100.00, 900.00, 'imagenA.jpg', 50, 1, 1);
-call sp_AgregarProductos(8, 'Producto A', 10.00, 100.00, 900.00, 'imagenA.jpg', 50, 1, 1);
+call sp_AgregarTipoProducto(8, 'Tipo A');
+call sp_AgregarProveedores(8,'124585003','proveedor1','proveedor1','proveedor1','proveedor1','59846251','proveedor1@gmail.com');
+call sp_AgregarProductos(8, 'Producto A', 10.00, 100.00, 900.00, 'imagenA.jpg', 50, 8, 8);
 
 
 
@@ -698,9 +689,7 @@ call sp_BuscarProducto(1);
 -- ELIMINAR PRODUCTO
 
 delimiter $$
-create procedure sp_EliminarProducto (
-    in codigoProducto int
-)
+create procedure sp_EliminarProducto (in codigoProducto int)
 begin
     delete from Productos
     where codigoProducto = codigoProducto;
@@ -708,7 +697,7 @@ end$$
 delimiter ;
 SET SQL_SAFE_UPDATES = 0;
 
-call sp_EliminarProducto(1);
+call sp_EliminarProducto(0);
 
 
 
@@ -874,10 +863,8 @@ call sp_AgregarTelefonoProveedor(1,'45454554', '23232323', 'numero1', 15);
 call sp_AgregarProveedores(12,'124585003','proveedor1','proveedor1','proveedor1','proveedor1','59846251','proveedor1@gmail.com');
 call sp_AgregarTelefonoProveedor(12,'45454554', '23232323', 'numero1', 12);
 
-call sp_AgregarProveedores(16,'124585003','proveedor1','proveedor1','proveedor1','proveedor1','59846251','proveedor1@gmail.com');
-call sp_AgregarTelefonoProveedor(16,'45454554', '23232323', 'numero1', 13);
-
-
+call sp_AgregarProveedores(17,'124585003','proveedor1','proveedor1','proveedor1','proveedor1','59846251','proveedor1@gmail.com');
+call sp_AgregarTelefonoProveedor(17,'45454554', '23232323', 'numero1', 17);
 
 -- Listar TelefonoProveedor
 Delimiter $$
@@ -912,7 +899,7 @@ Delimiter $$
 			where codigoTelefonoProveedor = codTeleProv;
 		End $$
 Delimiter ;
-call sp_BuscarTelefonoProveedor(13);
+call sp_BuscarTelefonoProveedor(17);
 
 
 
@@ -1135,23 +1122,19 @@ begin
 end$$
 delimiter ;
 
+call sp_AgregarClientes(2, '48956217', 'usuario2', 'usuario2', 'usuario2', '98785675', 'usuario2@gmail.com');
+call sp_AgregarEmpleados(3,'nombre', 'apellido', 100.00, 'direccion', 'turno', 12);
+call sp_AgregarFacturas (1, 'activo', 100.00, 'enero', 2, 3);
 
-call sp_AgregarFacturas (1, 'activo', 100.00, 'enero', 1, 1);
-/*
 
-create table Factura (
-    numeroFactura int not null,
-    estado varchar(50),
-    totalFactura decimal(10,2),
-    fechaFactura varchar(45),
-    codigoCliente int not null,
-    codigoEmpleado int not null,
-    primary key (numeroFactura),
-    foreign key (codigoCliente) references Clientes(codigoCliente),
-    foreign key (codigoEmpleado) references Empleado(codigoEmpleado)
-);
+call sp_AgregarClientes(6, '48956217', 'usuario2', 'usuario2', 'usuario2', '98785675', 'usuario2@gmail.com');
+call sp_AgregarEmpleados(6,'nombre', 'apellido', 100.00, 'direccion', 'turno', 12);
+call sp_AgregarFacturas (6, 'activo', 100.00, 'enero', 6, 6);
 
-*/
+
+call sp_AgregarClientes(7, '48956217', 'usuario2', 'usuario2', 'usuario2', '98785675', 'usuario2@gmail.com');
+call sp_AgregarEmpleados(7,'nombre', 'apellido', 100.00, 'direccion', 'turno', 12);
+call sp_AgregarFacturas (7, 'activo', 100.00, 'enero', 7, 7);
 
 
 
@@ -1170,7 +1153,7 @@ Delimiter $$
 		End $$
 Delimiter ;
 
-
+call sp_ListarFactura();
 
 
 
@@ -1190,7 +1173,7 @@ Delimiter $$
 			where numeroFactura = numFact;
 		End $$
 Delimiter ;
- 
+call sp_BuscarFactura(7);
 
 
 
@@ -1204,7 +1187,7 @@ Delimiter $$
 				where numeroFactura = numFact;
         End $$
 Delimiter ;
- 
+call sp_EliminarFactura(0);
 
 
 
@@ -1227,7 +1210,7 @@ Delimiter $$
 		End $$
 Delimiter ;
 
-
+-- call sp_EditarFactura();
 
 
 
@@ -1235,17 +1218,13 @@ Delimiter ;
 
 -- Agregar DetalleFactura
 delimiter $$
-create procedure sp_AgregarDetalleFactura (in codigodetallefactura int, in preciounitario decimal(10,2), 
-											in cantidad int, in numerofactura int, in codigoproducto int)
+create procedure sp_AgregarDetalleFactura (in codigoDetalleFactura int, in precioUnitario decimal(10,2), 
+											in cantidad int, in numeroFactura int, in codigoProducto int)
 begin
-    insert into detallefactura (codigodetallefactura, preciounitario, cantidad, numerofactura, codigoproducto) 
-    values (codigodetallefactura, preciounitario, cantidad, numerofactura, codigoproducto);
+    insert into detallefactura (codigoDetalleFactura, precioUnitario, cantidad, numeroFactura, codigoProducto) 
+    values (codigoDetalleFactura, precioUnitario, cantidad, numeroFactura, codigoProducto);
 end$$
 delimiter ;
-
--- Llamar al procedimiento para agregar datos
-
-
 
 
 
@@ -1264,7 +1243,7 @@ Delimiter $$
 			from DetalleFactura DF;
 		End $$
 Delimiter ;
- 
+call sp_ListarDetalleFactura();
 
 
 
@@ -1286,7 +1265,7 @@ Delimiter $$
 		End $$
 Delimiter ;
  
-
+call sp_BuscarDetalleFactura(1);
 
 
 
@@ -1300,7 +1279,7 @@ Delimiter $$
 				where codigoDetalleFactura = codDetFac;
         End $$
 Delimiter ;
- 
+call sp_EliminarDetalleFactura(0);
 
 
 
@@ -1319,7 +1298,7 @@ Delimiter $$
 		End $$
 Delimiter ;
 
-
+-- call sp_EditarDetalleFactura();
 
 
 
