@@ -354,7 +354,7 @@ public class MenuClientesController implements Initializable{
       
       
       
-      
+      // imprimir
       public void imprimirReporte(){
       Map parametro = new HashMap();
       parametro.put("codigoCliente", null);
