@@ -5,6 +5,8 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,6 +27,7 @@ import org.johantojin.bean.Producto;
 import org.johantojin.bean.Proveedores;
 import org.johantojin.bean.TipoDeProducto;
 import org.johantojin.db.Conexion;
+import org.johantojin.reportes.GenerarReportes;
 import org.johantojin.system.Principal;
 
 /**
@@ -256,6 +259,34 @@ public class MenuPRDController implements Initializable {
         e.printStackTrace();
     }
 }
+    
+    
+          public void reporte(){
+        switch (tipoDeOperaciones){
+            case NINGUNO:
+            imprimirReporte();
+            break;
+            case ACTUALIZAR:
+                desactivarControles();
+                limpiarControles();
+                btnEditar.setText("Editar");
+                btnReporte.setText("Reporte");
+                btnAgregar.setDisable(false);
+                btnEliminar.setDisable(false);
+            
+                tipoDeOperaciones = operaciones.NINGUNO;
+                        
+        }
+    }
+      
+      
+      
+      
+      public void imprimirReporte(){
+      Map parametro = new HashMap();
+      parametro.put("codigoProveedor", null);
+      GenerarReportes.mostrarReportes("ReportesClientes.jasper", "Reporte de los Proveedores", parametro);
+      }
 
     public void desactivarControles(){
         txtCodigoProd.setEditable(false);

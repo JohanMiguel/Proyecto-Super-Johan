@@ -291,6 +291,10 @@ call sp_ListarProveedores();
 		End $$
 Delimiter ;
 call sp_AgregarCompras (4, 'mayo 9', 'producocomprado', '50');
+call sp_AgregarCompras (1, 'mayo 9', 'producocomprado', '50');
+call sp_AgregarCompras (2, 'mayo 9', 'producocomprado', '50');
+call sp_AgregarCompras (3, 'mayo 9', 'producocomprado', '50');
+call sp_AgregarCompras (5, 'mayo 9', 'producocomprado', '50');
 
 -- LISTAR COMPRAS
 Delimiter $$
@@ -523,4 +527,28 @@ end $$
 delimiter ;
 
 call sp_EditarCargoEmpleado(2, 'Nuevo Cargo Z', 'Nueva Descripción del Cargo Z');
+
+
+ALTER USER '2020586_IN5BV'@'localhost' IDENTIFIED WITH mysql_native_password BY 'abc123!!';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
