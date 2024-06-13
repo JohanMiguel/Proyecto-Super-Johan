@@ -25,11 +25,11 @@ public class Conexion {
     private Connection conexion;
     private static Conexion instancia;
     
-    
+   // jdbc:mysql://localhost:3306/DBElSuper?characterEncoding=utf8
     public Conexion(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/DBElSuper?useSSL=false", "2020586_IN5BV", "abc123!!");
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/DBElSuper?useSSL=false", "2020591", "abc123!!");
         }catch(ClassNotFoundException e){
             e.printStackTrace();
         }catch (InstantiationException e){

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportesCompras" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a35f1304-65a1-45c8-8114-5f288446862e">
-	<property name="ireport.zoom" value="1.2100000000000009"/>
+	<property name="ireport.zoom" value="0.42409761837248533"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<queryString>
@@ -21,8 +21,8 @@
 	<background>
 		<band height="802" splitType="Stretch">
 			<image scaleImage="FillFrame">
-				<reportElement x="0" y="0" width="555" height="802" uuid="b750fe6c-ead0-42bc-bfd9-301346c7a420"/>
-				<imageExpression><![CDATA["C:\\Users\\Informatica\\Desktop\\Repositorio MG\\Proyecto-Super-Johan\\src\\org\\johantojin\\images\\menbrete 2.png"]]></imageExpression>
+				<reportElement x="0" y="0" width="555" height="802" uuid="275b0e53-6bc4-4fae-8b74-62ca5480d7e1"/>
+				<imageExpression><![CDATA["C:\\Users\\informatica\\Desktop\\Repositorio_Johan\\Proyecto-Super-Johan\\src\\org\\johantojin\\images\\menbrete 2.png"]]></imageExpression>
 			</image>
 		</band>
 	</background>

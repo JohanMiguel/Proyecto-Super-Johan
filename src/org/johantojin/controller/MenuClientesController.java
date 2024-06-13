@@ -344,9 +344,7 @@ public class MenuClientesController implements Initializable{
                 btnEditar.setText("Editar");
                 btnReporte.setText("Reporte");
                 btnAgregar.setDisable(false);
-                btnEliminar.setDisable(false);
-                imgEditar.setImage(new Image("/og/johantojin/images/Editar.png"));
-                imgReporte.setImage(new Image("/org/johantojin/images/Reportes.png"));
+                btnEliminar.setDisable(false);               
                 tipoDeOperaciones = operaciones.NINGUNO;
                         
         }
@@ -358,8 +356,10 @@ public class MenuClientesController implements Initializable{
       public void imprimirReporte(){
       Map parametro = new HashMap();
       parametro.put("codigoCliente", null);
-      GenerarReportes.mostrarReportes("ReportesClientes.jasper", "Reporte de los clientes", parametro);
+      GenerarReportes.mostrarReportes("reportesClientes.jasper", "Reporte de los clientes", parametro);
       }
+      
+      
     // metodo para desactivar los coontroladores
     public void desactivarControles(){
         txtCodigoC.setEditable(false);

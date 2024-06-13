@@ -284,8 +284,8 @@ public class MenuPRDController implements Initializable {
       
       public void imprimirReporte(){
       Map parametro = new HashMap();
-      parametro.put("codigoProveedor", null);
-      GenerarReportes.mostrarReportes("ReportesClientes.jasper", "Reporte de los Proveedores", parametro);
+      parametro.put("codigoProducto", null);
+      GenerarReportes.mostrarReportes("reporteProducto.jasper", "Reporte de los Productos", parametro);
       }
 
     public void desactivarControles(){

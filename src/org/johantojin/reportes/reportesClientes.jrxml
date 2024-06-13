@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportesClientes" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2a1c8e54-e22b-4266-be99-a6979cccc673">
-	<property name="ireport.zoom" value="3.4522712143931105"/>
-	<property name="ireport.x" value="734"/>
-	<property name="ireport.y" value="549"/>
+	<property name="ireport.zoom" value="2.1435888100000065"/>
+	<property name="ireport.x" value="298"/>
+	<property name="ireport.y" value="1221"/>
 	<queryString>
 		<![CDATA[call sp_ListarClientes]]>
 	</queryString>
@@ -30,8 +30,8 @@
 	<background>
 		<band height="802" splitType="Stretch">
 			<image scaleImage="FillFrame">
-				<reportElement x="0" y="0" width="555" height="802" uuid="a342c604-d19c-4ded-b134-f4b3f9b2ca7f"/>
-				<imageExpression><![CDATA["C:\\Users\\Informatica\\Desktop\\Repositorio MG\\Proyecto-Super-Johan\\src\\org\\johantojin\\images\\menbrete 2.png"]]></imageExpression>
+				<reportElement x="0" y="0" width="555" height="802" uuid="86debe0d-cbb1-46c0-8ce1-23595fa12fbe"/>
+				<imageExpression><![CDATA["C:\\Users\\informatica\\Desktop\\Repositorio_Johan\\Proyecto-Super-Johan\\src\\org\\johantojin\\images\\menbrete 2.png"]]></imageExpression>
 			</image>
 		</band>
 	</background>

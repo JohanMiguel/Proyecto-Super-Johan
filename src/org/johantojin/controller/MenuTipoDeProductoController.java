@@ -4,6 +4,8 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,6 +23,7 @@ import javafx.scene.input.MouseEvent;
 import javax.swing.JOptionPane;
 import org.johantojin.bean.TipoDeProducto;
 import org.johantojin.db.Conexion;
+import org.johantojin.reportes.GenerarReportes;
 import org.johantojin.system.Principal;
 
 /**
@@ -243,19 +246,29 @@ public class MenuTipoDeProductoController implements Initializable {
     
     public void reporte(){
         switch (tipoDeOperaciones){
+            case NINGUNO:
+            imprimirReporte();
+            break;
             case ACTUALIZAR:
                 desactivarControles();
                 limpiarControles();
                 btnEditar.setText("Editar");
                 btnReporte.setText("Reporte");
                 btnAgregar.setDisable(false);
-                btnEliminar.setDisable(false);
-                imgEditar.setImage(new Image("/og/johantojin/images/Editar.png"));
-                imgReporte.setImage(new Image("/org/johantojin/images/Reportes.png"));
+                btnEliminar.setDisable(false);               
                 tipoDeOperaciones = operaciones.NINGUNO;
                         
         }
     }
+      
+      
+      
+      // imprimir
+      public void imprimirReporte(){
+      Map parametro = new HashMap();
+      parametro.put("codigoTipoProducto", null);
+      GenerarReportes.mostrarReportes("reportesCompras.jasper", "Reporte de los Tipos de Producto", parametro);
+      }
 
 
     public void desactivarControles(){
