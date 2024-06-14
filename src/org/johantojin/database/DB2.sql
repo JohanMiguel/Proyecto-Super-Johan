@@ -41,7 +41,7 @@ create table TipoProducto (
 	descripcion varchar (45) not null,
 	primary key PK_codigoTipoProducto (codigoTipoProducto)
 );
-
+ 
 create table CargoEmpleado (
 	codigoCargoEmpleado int not null,
 	nombreCargo varchar (45) not null,
@@ -65,8 +65,12 @@ Delimiter $$
 		End $$
 Delimiter ;
 
-call sp_AgregarClientes(1, '59486218', 'usuario1', 'usuario1', 'usuario1', '84629518', 'usuario1@gmail.com');
-call sp_AgregarClientes(2, '48956217', 'usuario2', 'usuario2', 'usuario2', '98785675', 'usuario2@gmail.com');
+call sp_AgregarClientes(4, '59486218', 'Johan', 'Tojin', 'casaJohan', '84629518', 'usuario1@gmail.com');
+call sp_AgregarClientes(5, '48956217', 'Daniel', 'Reyes', 'casaDaniel', '98785675', 'usuario2@gmail.com');
+call sp_AgregarClientes(6, '87654332', 'Jose', 'Pedro', 'casaJose', '87658756', 'usuario3@gmail.com');
+call sp_AgregarClientes(7, '98765432', 'Luis', 'Jose', 'casaLuis', '90878789', 'usuario4@gmail.com');
+call sp_AgregarClientes(8, '87654321', 'Oliver', 'Sales', 'casaOliver', '87569876', 'usuario5@gmail.com');
+call sp_AgregarClientes(9, '09876554', 'Harliin', 'Palacios', 'casaHrlin', '98670921', 'usuario6@gmail.com');
  
  
  
@@ -176,7 +180,10 @@ Delimiter ;
  
 call sp_AgregarProveedores(4,'124585003','proveedor1','proveedor1','proveedor1','proveedor1','59846251','proveedor1@gmail.com');
 call sp_AgregarProveedores(5,'124581250','proveedor2','proveedor2','proveedor2','proveedor2','48624859','proveedor1@gmail.com');
-
+call sp_agregarproveedores(6,'124582500','proveedor3','proveedor3','proveedor3','proveedor3','75231485','proveedor3@gmail.com');
+call sp_agregarproveedores(7,'124583750','proveedor4','proveedor4','proveedor4','proveedor4','61238947','proveedor4@gmail.com');
+call sp_agregarproveedores(8,'124584900','proveedor5','proveedor5','proveedor5','proveedor5','67812345','proveedor5@gmail.com');
+call sp_agregarproveedores(9,'124586150','proveedor6','proveedor6','proveedor6','proveedor6','78965432','proveedor6@gmail.com');
 
 
 
@@ -291,7 +298,11 @@ call sp_ListarProveedores();
 		End $$
 Delimiter ;
 call sp_AgregarCompras (4, 'mayo 9', 'producocomprado', '50');
-
+call sp_agregarcompras(5, 'junio 1', 'materiales oficina', 120.50);
+call sp_agregarcompras(6, 'julio 15', 'equipo informático', 500.00);
+call sp_agregarcompras(7, 'agosto 20', 'muebles oficina', 300.75);
+call sp_agregarcompras(8, 'septiembre 5', 'papelería', 80.20);
+call sp_agregarcompras(9, 'octubre 10', 'servicios limpieza', 150.00);
 -- LISTAR COMPRAS
 Delimiter $$
 	create procedure sp_ListarCompras()
@@ -376,8 +387,11 @@ begin
 end $$
 delimiter ;
 
-call sp_AgregarTipoProducto(1, 'Tipo A');
-
+call sp_AgregarTipoProducto(1, 'Salado');
+call sp_AgregarTipoProducto(2, 'Dulce');
+call sp_AgregarTipoProducto(3, 'Golocina');
+call sp_AgregarTipoProducto(4, 'Nutritiva');
+call sp_AgregarTipoProducto(4, 'Especial');
 
 
 
@@ -636,6 +650,23 @@ delimiter ;
 call sp_AgregarTipoProducto(18, 'Tipo A');
 call sp_AgregarProveedores(18,'124585003','proveedor1','proveedor1','proveedor1','proveedor1','59846251','proveedor1@gmail.com');
 call sp_AgregarProductos(8, 'Producto A', 10.00, 100.00, 900.00, 'imagenA.jpg', 50, 18, 18);
+
+
+
+call sp_AgregarProductos(9, 'Producto A', 10.00, 100.00, 900.00, 'imagenA.jpg', 50, 1, 4);
+
+call sp_AgregarTipoProducto(22, 'Dulce');
+call sp_AgregarProveedores(22,'124585003','proveedor1','proveedor1','proveedor1','proveedor1','59846251','proveedor1@gmail.com');
+call sp_AgregarProductos(12, 'Producto A', 10.00, 100.00, 900.00, 'imagenA.jpg', 50, 22, 22);
+
+call sp_AgregarTipoProducto(23, 'Golosinas');
+call sp_AgregarProveedores(23,'124585003','Jose','Luis','proveedor2','proveedor1','59846251','proveedor1@gmail.com');
+call sp_AgregarProductos(13, 'Producto A', 10.00, 100.00, 900.00, 'imagenA.jpg', 50, 23, 23);
+
+
+call sp_AgregarTipoProducto(24, 'Golosinas');
+call sp_AgregarProveedores(24,'124585003','Pedri','Torres','proveedor2','proveedor1','59846251','proveedor1@gmail.com');
+call sp_AgregarProductos(14, 'Dulce', 10.00, 100.00, 900.00, 'imagenA.jpg', 50, 24, 24);
 
 
 
@@ -1083,7 +1114,7 @@ Delimiter $$
 				where codigoEmpleado = codEmp;
         End $$
 Delimiter ;
- call sp_EliminarEmpleados1(1);
+ call sp_EliminarEmpleados1(0);
 
 
 
@@ -1140,6 +1171,17 @@ call sp_AgregarFacturas (6, 'activo', 100.00, 'enero', 6, 6);
 call sp_AgregarClientes(7, '48956217', 'usuario2', 'usuario2', 'usuario2', '98785675', 'usuario2@gmail.com');
 call sp_AgregarEmpleados(7,'nombre', 'apellido', 100.00, 'direccion', 'turno', 12);
 call sp_AgregarFacturas (7, 'activo', 100.00, 'enero', 7, 7);
+
+
+call sp_AgregarClientes(8, '48956217', 'usuario2', 'usuario2', 'usuario2', '98785675', 'usuario2@gmail.com');
+call sp_AgregarEmpleados(8,'Jose', 'Lopes', 100.00, 'direccion', 'turno', 12);
+call sp_AgregarFacturas (8, 'activo', 100.00, 'enero', 8, 8);
+
+
+
+call sp_AgregarClientes(9, '48956217', 'Juan', 'Luis', 'usuario2', '98785675', 'usuario2@gmail.com');
+call sp_AgregarEmpleados(9,'nombre', 'apellido', 100.00, 'direccion', 'turno', 12);
+call sp_AgregarFacturas (9, 'activo', 100.00, 'enero', 9, 9);
 
 
 

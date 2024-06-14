@@ -45,22 +45,22 @@
             <Label text="codigoEmpleado" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <Label text="fechaFactura" textFill="WHITE" GridPane.columnIndex="2" />
             <Label text="codigoCliente" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="3" />
-            <ComboBox prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <ComboBox prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <TextField fx:id="txtNumeroFactura" GridPane.columnIndex="1" />
+            <TextField fx:id="txtEstado" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtTotalFactura" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtFechaFactura" GridPane.columnIndex="3" />
+            <ComboBox fx:id="cmbCodigoCliente" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <ComboBox fx:id="cmbCodigoEmpleado" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <TableView fx:id="tblProductos" layoutX="39.0" layoutY="306.0" prefHeight="200.0" prefWidth="630.0">
+      <TableView fx:id="tblFacturas" layoutX="14.0" layoutY="306.0" prefHeight="200.0" prefWidth="655.0">
          <columns>
-            <TableColumn prefWidth="75.0" text="codignumeroFacturaoDescripcion" />
-            <TableColumn prefWidth="103.99999237060547" text="estado" />
-            <TableColumn prefWidth="100.80001831054688" text="PrecioUnitotalFacturatario" />
-            <TableColumn prefWidth="123.99993896484375" text="fechaFactura" />
-            <TableColumn prefWidth="102.40005493164062" text="codigoCliente" />
-            <TableColumn prefWidth="126.39996337890625" text="codigoCliente" />
+            <TableColumn fx:id="colNumeroFactura" prefWidth="95.0" text="codigoFactura" />
+            <TableColumn fx:id="colEstado" prefWidth="84.0" text="estado" />
+            <TableColumn fx:id="colTotalFactura" prefWidth="100.80001831054688" text="PrecioUnitotalFacturatario" />
+            <TableColumn fx:id="colFechaFactura" prefWidth="123.99993896484375" text="fechaFactura" />
+            <TableColumn fx:id="colCodigoCliente" prefWidth="102.40005493164062" text="codigoCliente" />
+            <TableColumn fx:id="colCodigoEmpleado" prefWidth="126.39996337890625" text="codigoEmpleado" />
          </columns>
       </TableView>
       <GridPane layoutX="680.0" layoutY="89.0" prefHeight="201.0" prefWidth="170.0">
