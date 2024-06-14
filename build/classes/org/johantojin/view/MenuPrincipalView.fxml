@@ -15,7 +15,7 @@
             <Image url="@../images/FondoPrincipal.png" />
          </image>
       </ImageView>
-      <MenuBar layoutX="7.0" layoutY="14.0" prefHeight="25.0" prefWidth="488.0" style="-fx-background-color: # 0D8ECB;" stylesheets="@../resource/ElSuperCSS.css">
+      <MenuBar layoutX="7.0" layoutY="13.0" prefHeight="27.0" prefWidth="667.0" style="-fx-background-color: # 0D8ECB;" stylesheets="@../resource/ElSuperCSS.css">
         <menus>
           <Menu mnemonicParsing="false" text="General">
             <items>

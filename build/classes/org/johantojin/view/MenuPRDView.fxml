@@ -79,7 +79,7 @@
             <Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#agregar" prefHeight="46.0" prefWidth="170.0" styleClass="button3" stylesheets="@../resource/ElSuperCSS.css" text="Agregar" />
             <Button fx:id="btnEliminar" mnemonicParsing="false" prefHeight="50.0" prefWidth="181.0" styleClass="button3" stylesheets="@../resource/ElSuperCSS.css" text="Eliminar" GridPane.rowIndex="1" />
             <Button fx:id="btnEditar" mnemonicParsing="false" prefHeight="46.0" prefWidth="178.0" styleClass="button3" stylesheets="@../resource/ElSuperCSS.css" text="Editar" GridPane.rowIndex="2" />
-            <Button fx:id="btnReporte" mnemonicParsing="false" prefHeight="48.0" prefWidth="177.0" styleClass="button3" stylesheets="@../resource/ElSuperCSS.css" text="Reportes" GridPane.rowIndex="3" />
+            <Button fx:id="btnReporte" mnemonicParsing="false" onAction="#reporte" prefHeight="48.0" prefWidth="177.0" styleClass="button3" stylesheets="@../resource/ElSuperCSS.css" text="Reportes" GridPane.rowIndex="3" />
             <Button fx:id="btnAgregar1" layoutX="10.0" layoutY="13.0" mnemonicParsing="false" onAction="#agregar" prefHeight="46.0" prefWidth="170.0" styleClass="button3" stylesheets="@../resource/ElSuperCSS.css" text="Agregar" />
          </children>
       </GridPane>

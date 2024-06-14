@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="900.0" style="-fx-background-color: #1B4896;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.johantojin.controller.MenuDetalleCompraController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="900.0" style="-fx-background-color: #1B4896;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.johantojin.controller.MenuDetalleFacturaController">
    <children>
       <ImageView fitHeight="507.0" fitWidth="944.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -42,7 +42,7 @@
             <Label text="codigoDetalleFactura" textFill="WHITE" />
             <Label text="precioUnitario" textFill="WHITE" GridPane.rowIndex="1" />
             <Label text="cantidad" textFill="WHITE" GridPane.rowIndex="2" />
-            <Label text="numeroFactura" textFill="WHITE" GridPane.columnIndex="2" />
+            <Label text="numeroDocumento" textFill="WHITE" GridPane.columnIndex="2" />
             <Label text="codigoProducto" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <TextField GridPane.columnIndex="1" />
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
